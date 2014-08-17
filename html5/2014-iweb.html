@@ -1,0 +1,496 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="fade">
+<head>
+  <meta charset="UTF-8">
+  <title>WebRTC – 浏览器中的实时通讯</title>
+  <meta name="viewport" content="width=device-width, user-scalable=yes">
+  <link rel="stylesheet" href="themes/mozilla/styles/style.css">
+  <style>
+body {
+  font-family: 'OpenSansRegular', sans-serif;
+}
+.slide.cover section {
+  background: url(themes/mozilla/images/bg-sandstone-2.png);
+}
+  </style>
+</head>
+<body class="list">
+  <header class="caption">
+    <h1>WebRTC – 浏览器中的实时通讯</h1>
+    <p class="footer">
+      赵博通,
+      {<a href="mailto:bzhao@mozilla.com">bzhao@mozilla.com</a>}
+    </p>
+  </header>
+  <aside class="talkdescription">
+    <p>This slide deck is using the shower system - roll over the previews to see the notes and click any slide to go into presentation mode. Then use keys to navigate. <button onclick="goFullScreen()">Go fullscreen</button></p>
+    <p class="abstract">
+      <strong>摘要: </strong>
+      借助 WebRTC 这一新兴的技术，Web 开发者可以方便的为用户提供更好的通讯体验。从前端开发者的角度来看，WebRTC 由 getUserMedia, RTCPeerConnection 和 RTCDataChannel API 组成，目前已经可以在桌面和移动设备上的 Firefox、Chrome、Opera浏览器中使用。最后会介绍一些现有的有趣应用。
+    </p>
+  </aside>
+
+  <div id="cover" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebRTC<br>浏览器中的实时通讯</h2>
+      </header>
+      <img src="pictures/2014-iweb/webrtc_logo.png"
+           class="middle" height="250"
+           alt="WebRTC">
+      <small class="byline">
+        赵博通, iWeb 峰会, 北京, 2014年08月16日
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-before" class="slide"><div>
+    <section>
+      <header>
+        <h2>视频聊天</h2>
+      </header>
+      <img src="pictures/2014-iweb/lifehacker-all.png"
+           class="left" height="384"
+           alt="Five Best Apps for Real-Time Video Chat (2011)">
+      <img src="pictures/2014-iweb/lifehacker-web.png"
+           class="right" height="384"
+           alt="Five Best Web-Based Video Chat Services (2013)">
+      <ul>
+        <li>独立软件</li>
+        <li>独立插件</li>
+        <li>Flash Player</li>
+      </ul>
+      <small class="credits">
+        <a href="http://lifehacker.com/5801973/five-best-apps-for-real-time-video-chat">
+          Five Best Apps for Real-Time Video Chat (2011)
+        </a>
+        &nbsp;
+        <a href="http://lifehacker.com/five-best-web-based-video-chat-services-844494319">
+          Five Best Web-Based Video Chat Services (2013)
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-hangouts-webrtc" class="slide"><div>
+    <section>
+      <header>
+        <h2>Google Hangouts</h2>
+      </header>
+      <img src="pictures/2014-iweb/hangouts.png"
+           class="middle" height="384"
+           alt="Google Hangouts">
+      <small class="credits">
+        <a href="https://plus.google.com/u/0/103171586947853434456/posts/39TCW3PcLye">
+          Hangouts in an instant: Video chat without downloading a plugin
+        </a>
+      </small>
+
+    </section>
+  </div></div>
+
+  <div id="webrtc-start" lang="en-US" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebRTC</h2>
+      </header>
+      <blockquote class="lots">
+        <p>... define client-side APIs to enable Real-Time Communications in Web browsers. ...</p>
+        <p class="byline">WebRTC WG Charter</p>
+      </blockquote>
+      <blockquote class="lots">
+        <p>... produce architecture and requirements for selection and profiling of the on the wire protocols. ...</p>
+        <p class="byline">rtcweb - Charter</p>
+      </blockquote>
+      <small class="credits">
+        <a href="http://www.w3.org/2011/04/webrtc-charter.html">
+          WebRTC WG Charter
+        </a>
+        &nbsp;
+        <a href="http://datatracker.ietf.org/wg/rtcweb/charter/">
+          rtcweb - Charter
+        </a>
+        &nbsp;
+        <a href="http://lists.w3.org/Archives/Public/public-webrtc/2011May/0022.html">
+          Google release of WebRTC source code
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-caniuse" class="slide cover"><div>
+    <section>
+      <header>
+        <h2>浏览器支持</h2>
+      </header>
+      <img src="pictures/2014-iweb/caniuse.png"
+           class="middle" height="384"
+           alt="Can I use WebRTC?">
+      <small class="credits">
+        <a href="http://caniuse.com/#search=WebRTC">
+          Can I use... Support tables for HTML5, CSS3, etc
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-interop-peerjs" class="slide"><div>
+    <section>
+      <header>
+        <h2>跨浏览器兼容性</h2>
+      </header>
+      <img src="pictures/2014-iweb/peerjs.png"
+           class="middle" height="384"
+           alt="PeerJS Status">
+      <small class="credits">
+        <a href="http://peerjs.com/status/">
+          PeerJS Status
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-fxos" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox OS</h2>
+      </header>
+      <img src="pictures/2014-iweb/fxos.png"
+           class="middle" height="384"
+           alt="Can I use WebRTC?">
+    </section>
+  </div></div>
+
+  <div id="webrtc-gum" class="slide"><div>
+    <section>
+      <header>
+        <h2>getUserMedia</h2>
+      </header>
+      <button>Camera Toggle</button>
+      <video class="right" height="384"
+             poster="pictures/2014-iweb/webrtc_logo.jpg">
+        Are you kidding? No video support?
+      </video>
+      <script>
+      (function() {
+        var button = document.querySelector("#webrtc-gum button"),
+            video = document.querySelector("#webrtc-gum video");
+        if (navigator.mozGetUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.getUserMedia) {
+          button.addEventListener("click", function() {
+            if (video.src && ["blob", "mediastream"].indexOf(video.src.split(":")[0]) > -1) {
+              video.pause();
+              video.src = "";
+            } else {
+              var getUserMedia = (navigator.mozGetUserMedia ||
+                                  navigator.webkitGetUserMedia ||
+                                  navigator.getUserMedia).bind(navigator);
+              getUserMedia({
+                video: true,
+                audio: false
+              }, function(aStream) {
+                video.src = URL.createObjectURL(aStream);
+                video.play();
+              }, function(aError) {
+                console.error(aError);
+              })
+            }
+          });
+        } else {
+          button.hidden = true;
+        }
+      })();
+      </script>
+    </section>
+  </div></div>
+
+  <div id="webrtc-gum-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>getUserMedia</h2>
+      </header>
+      <pre>
+        <code>navigator.getUserMedia({video:true}, gotStream, noStream);</code>
+        <code>var video = document.querySelector('video');</code>
+        <code>function gotStream(stream) {</code>
+        <code>  video.src = URL.createObjectURL(stream);</code>
+        <code>}</code>
+        <code>function noStream() {</code>
+        <code>  document.getElementById('errorMessage').textContent = 'No camera available.';</code>
+        <code>}</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/mediacapture-streams/">
+          Media Capture and Streams
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-peerconnection-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCPeerConnection (to be cont'd)</h2>
+      </header>
+      <pre>
+        <code>var pc = new RTCPeerConnection({</code>
+        <code>  "iceServers": [{ "url": "stun:stun.example.org" }]</code>
+        <code>});</code>
+        <code>...</code>
+        <code>pc.addStream(stream);</code>
+        <code>pc.createOffer(function localDescCreated(desc) {</code>
+        <code>  pc.setLocalDescription(desc, function () {</code>
+        <code>    signalingChannel.send({ sdp: pc.localDescription });</code>
+        <code>  }, logError);</code>
+        <code>...</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/webrtc/">
+          WebRTC 1.0: Real-time Communication Between Browsers
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-peerconnection-code-contd" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCPeerConnection (cont'd)</h2>
+      </header>
+      <pre>
+        <code>pc.onaddstream = function (evt) {</code>
+        <code>  remoteView.src = URL.createObjectURL(evt.stream);</code>
+        <code>};</code>
+        <code>signalingChannel.onmessage = function (evt) {</code>
+        <code>  var message = JSON.parse(evt.data);</code>
+        <code>  if (message.sdp) {</code>
+        <code>    pc.setRemoteDescription(message.sdp, function () {</code>
+        <code>      if (pc.remoteDescription.type == "offer") {</code>
+        <code>        pc.createAnswer(localDescCreated, logError);</code>
+        <code>...</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/webrtc/">
+          WebRTC 1.0: Real-time Communication Between Browsers
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-datachannel" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCDataChannel</h2>
+      </header>
+      <pre>
+        <code>channel = pc.createDataChannel("chat");</code>
+      </pre>
+      <pre>
+        <code>pc.ondatachannel = function (evt) {</code>
+        <code>  channel = evt.channel;</code>
+        <code>};</code>
+      </pre>
+      <pre>
+        <code>channel.onopen = function(evt) {};</code>
+        <code>channel.onmessage = function(evt) {};</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/webrtc/">
+          WebRTC 1.0: Real-time Communication Between Browsers
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-peerconnection" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCPeerConnection</h2>
+      </header>
+      <pre>
+        <code>+-----------+                               +-----------+ </code>
+        <code>|  Web App  |<--- App-Specific Signaling -->|  Web App  | </code>
+        <code>+-----------+                               +-----------+ </code>
+        <code>      ^                                            ^      </code>
+        <code>      |  SDP                                       |  SDP </code>
+        <code>      V                                            V      </code>
+        <code>+-----------+                                +-----------+</code>
+        <code>|  Browser  |<----------- Media ------------>|  Browser  |</code>
+        <code>+-----------+                                +-----------+</code>
+      </pre>
+      <small class="credits">
+        <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-06">
+          draft-ietf-rtcweb-jsep-06 - Javascript Session Establishment Protocol
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-sdp" class="slide"><div>
+    <section>
+      <header>
+        <h2>Session Description Protocol</h2>
+      </header>
+      <img src="pictures/2014-iweb/sdp.png"
+           class="middle" height="384"
+           alt="SDP Answer">
+    </section>
+  </div></div>
+
+  <div id="webrtc-dtls" class="slide"><div>
+    <section>
+      <header>
+        <h2>Datagram Transport Layer Security</h2>
+      </header>
+      <ul>
+        <li>与 TLS 类似
+        <li>考虑了 UDP 的特性
+        <li>在 WebRTC 中，依赖信令渠道的安全性
+      </ul>
+    </section>
+  </div></div>
+
+  <div id="webrtc-apps" class="slide"><div>
+    <section>
+      <header>
+        <h2>应用</h2>
+      </header>
+      <ul>
+        <li><a href="https://talky.io/">Talky.io</a>
+        <li><a href="http://blog.phono.com/tag/webrtc/">Phono</a> <a href="https://www.twilio.com/blog/2012/11/webrtc-for-twilio-client-now-available.html">twilio</a>
+        <li><a href="https://www.sharedrop.io/">ShareDrop</a> <a href="https://www.sharefest.me/">Sharefest</a>
+        <li><a href="https://peercdn.com/">PeerCDN</a> <a href="http://peerkit.com/">PeerKit</a>
+        <li><a href="https://togetherjs.com/">TogetherJS</a> <a href="http://codassium.com/">(codassium);</a>
+        <li><a href="https://wiki.mozilla.org/Loop">Loop</a>
+      </ul>
+    </section>
+  </div></div>
+
+  <div id="webrtc-sharedrop" class="slide cover"><div>
+    <section>
+      <header>
+        <h2>ShareDrop</h2>
+      </header>
+      <img src="pictures/2014-iweb/sharedrop.png"
+           class="middle" height="384"
+           alt="ShareDrop">
+      <small class="credits">
+        <a href="https://www.sharedrop.io/">
+          ShareDrop
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-togetherjs" class="slide cover"><div>
+    <section>
+      <header>
+        <h2>TogetherJS</h2>
+      </header>
+      <img src="pictures/2014-iweb/togetherjs-jsfiddle.png"
+           class="middle"
+           alt="TogetherJS @ JSFiddle">
+      <small class="credits">
+        <a href="https://togetherjs.com/">
+          Mozilla Labs : TogetherJS
+        </a>
+        &nbsp;
+        <a href="http://jsfiddle.net/">
+          JSFiddle
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-loop" class="slide"><div>
+    <section>
+      <header>
+        <h2>Loop</h2>
+      </header>
+      <img src="pictures/2014-iweb/loop-video.png"
+           class="middle" height="384"
+           alt="Loop (video)">
+      <small class="credits">
+        <a href="https://wiki.mozilla.org/Loop/Try_Loop">
+          Loop/Try Loop - MozillaWiki
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-hangouts-not-webrtc-yet" class="slide"><div>
+    <section>
+      <header>
+        <h2>Google Hangouts (again)</h2>
+      </header>
+      <img src="pictures/2014-iweb/hangouts-non-standard.png"
+           class="middle" height="204"
+           alt="Non-standard technology used in Google Hangouts">
+      <small class="credits">
+        <a href="http://webrtchacks.com/hangout-analysis-philipp-hancke/">
+          How does Hangouts use WebRTC? a chrome://webrtc-internals analysis (Philipp Hancke) | webrtcHacks
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-resources" class="slide"><div>
+    <section>
+      <header>
+        <h2>其它资源</h2>
+      </header>
+      <ul>
+        <li><a href="https://tokbox.com/opentok/libraries/client/js/">tokbox.com/opentok/</a>
+        <li><a href="http://peerjs.com/">peerjs.com</a>
+        <!--<li><a href="http://rtc.io/">rtc.io</a>-->
+        <li><a href="http://simplewebrtc.com/">simplewebrtc.com</a>
+        <li><a href="https://vline.com/developer/docs/vline.js/">vline.com/developer/</a>
+        <li><a href="https://github.com/webRTC/webRTC.io">github.com/webRTC/webRTC.io</a>
+      </ul>
+      <ul>
+        <li><a href="http://www.webrtc.org/">www.webrtc.org</a>
+        <li><a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/">www.html5rocks.com/en/tutorials/webrtc/basics/</a>
+        <li><a href="https://hacks.mozilla.org/category/webrtc/">hacks.mozilla.org/category/webrtc/</a>
+      </ul>
+    </section>
+  </div></div>
+
+  <div id="contacts" class="slide"><div>
+    <section>
+      <header>
+        <h2>联系我们</h2>
+      </header>
+      <img src="pictures/2014-iweb/wechat.jpg"
+           class="right" height="256"
+           alt="Wechat contact as QRCode">
+      <ul class="nobull">
+        <li><a href="http://mozilla.com.cn/">mozilla.com.cn</a>
+        <li><a href="mailto:cn-community@mozilla.com">cn-community@mozilla.com</a>
+        <li><a href="http://e.weibo.com/firefox">weibo.com/firefox</a>
+        <li>微信 mozilla_firefox
+      </ul>
+    </section>
+  </div></div>
+
+  <div id="thanks" class="slide cover h"><div>
+    <section>
+      <header>
+        <h2>谢谢！</h2>
+      </header>
+      <img src="pictures/2014-iweb/redpanda.jpg" class="right" alt="Red panda (Firefox)">
+      <ul class="nobull">
+        <li><a href="https://mozillians.org/u/hectorz/">赵博通</a>
+        <li><a href="mailto:bzhao@mozilla.com">bzhao@mozilla.com</a>
+        <li><a href="http://bit.ly/XT8EDU">http://bit.ly/XT8EDU</a>
+      </ul>
+      <small class="credits">
+        Photo by Jing
+      </small>
+    </section>
+  </div></div>
+  <div class="progress"><div></div></div>
+  <script src="scripts/script.js"></script>
+  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>
