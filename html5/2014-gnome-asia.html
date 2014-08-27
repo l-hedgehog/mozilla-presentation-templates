@@ -1,1 +1,770 @@
-will be available later
+<!DOCTYPE HTML>
+<html lang="en-US" class="fade">
+<head>
+  <meta charset="UTF-8">
+  <title>Firefox OS Unleashes the Future of Mobile</title>
+  <meta name="viewport" content="width=device-width, user-scalable=yes">
+  <link rel="stylesheet" href="themes/mozilla/styles/style.css">
+  <style>
+.slide.cover section {
+  background: url(themes/mozilla/images/bg-sandstone-2.png);
+}
+.slide ul.loots {
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+.slide ul.loots li {
+  font-size: 20px;
+  width: 50%;
+}
+.slide ul.loots li:before {
+  content: "";
+}
+  </style>
+</head>
+<body class="list">
+  <header class="caption">
+    <h1>Firefox OS Unleashes the Future of Mobile</h1>
+    <p class="footer">
+      Hector Zhao,
+      {<a href="mailto:hectorz@mozilla.com">hectorz@mozilla.com</a>}
+    </p>
+  </header>
+  <aside class="talkdescription">
+    <p>This slide deck is using the shower system - roll over the previews to see the notes and click any slide to go into presentation mode. Then use keys to navigate. <button onclick="goFullScreen()">Go fullscreen</button></p>
+    <p class="abstract">
+      <strong>Abstract: </strong>
+      Introduction to Firefox OS, including Open Web Apps, Web APIs &amp; Tools.
+    </p>
+  </aside>
+
+  <div id="cover" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox OS<br>Unleashes the Future of Mobile</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/firefox-os_phone-splash-watch_RGB1.png"
+           class="middle" height="384"
+           alt="Firefox OS">
+      <small class="byline">
+        Hector Zhao, GNOME.Asia/FUDCon APAC, Beijing, 2014-05-24
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="mozilla" class="slide"><div>
+    <section>
+      <header>
+        <h2>Mozilla</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/open-poster-small.png"
+           class="left" height="384"
+           alt="OPEN">
+      <ul>
+        <li>The orgnization behind Mozilla Firefox
+        <li>Create and promote open standards that enable innovation and advance the Web as a platform for all
+      </ul>
+      <small class="credits">
+        <a href="http://blog.seanmartell.com/2013/05/21/open-an-illustration-mashup/">
+          Open: An Illustration Mashup | Reticulating Splines
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="mozilla-webwewant" class="slide"><div>
+    <section>
+      <header>
+        <h2>Web we want</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/glow-infographic1-c.png"
+           class="middle" height="384"
+           alt="Web We Want">
+      <small class="credits">
+        <a href="https://blog.mozilla.org/press/media-library/screenshots/">
+          Product Screenshots | Mozilla Press Center
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <!--<div id="mobile-web-browsers" class="slide"><div>
+    <section>
+      <header>
+        <h2>Mobile Web Browsers</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/caniuse.png"
+           class="middle" height="384"
+           alt="iOS Safari, Android Browser, Chrome for Android, Firefox for Android @ caniuse.com">
+      <small class="credits">
+        <a href="http://caniuse.com/#agents=ios_saf,android,and_chr,and_ff">
+          Can I use... Support tables for HTML5, CSS3, etc
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>-->
+
+  <div id="fxos" class="slide cover w"><div>
+    <section>
+      <header>
+        <h2>Firefox OS</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/git-mozilla-org.png"
+           class="left" height="384"
+           alt="git.mozilla.org">
+      <small class="credits">
+        <a href="https://git.mozilla.org/">
+          git.mozilla.org
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="fxos-architecture" class="slide cover h"><div>
+    <section>
+      <header>
+        <h2>Architecture</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/Firefox_Layers_RGB_EN.jpg"
+           class="right" height="384"
+           alt="Architecture">
+      <small class="credits">
+        <a href="https://blog.mozilla.org/press/kits/firefox-os/">
+          Firefox OS | Mozilla Press Center
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="fxos-performance" class="slide"><div>
+    <section>
+      <header>
+        <h2>Performance</h2>
+      </header>
+      <ul>
+        <li>Competition among browser vendors
+        <li>asm.js &amp; Emscripten
+          <ul>
+            <li>Monster Madness
+            <li>Unreal Engine 3 &amp; 4
+            <li>Unity 5 game engine
+            <li>Android PinyinIME
+          </ul>
+      </ul>
+      <small class="credits">
+        <a href="http://arewefastyet.com/">
+          ARE WE FAST YET?
+        </a>
+        &nbsp;
+        <a href="https://blog.mozilla.org/blog/tag/asm-js/">
+          asm.js | The Mozilla Blog
+        </a>
+        &nbsp;
+        <a href="https://github.com/PinZhang/Android-PinyinIME/tree/empinyin">
+          PinZhang/Android-PinyinIME at empinyin
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="fxos-devices" class="slide"><div>
+    <section>
+      <header>
+        <h2>Devices &amp; Availability</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/ALCATEL-ONE-TOUCH-Fire-Side-2.png"
+           class="right" height="384"
+           alt="Alcatel One Touch Fire">
+      <ul>
+        <li>Alcatel ONETOUCH Fire, LG FireWeb, ZTE Open, Huawei Y300II
+        <li>more than 15 Europe and Latin America countries
+        <li>Sales of ZTE Open C on eBay recently started
+        <li>Flame, "the reference phone", is coming soon
+      </ul>
+      <small class="credits">
+        <a href="https://www.mozilla.org/firefox/os/devices/">
+          Firefox OS - Devices &amp; Availability
+        </a>
+        &nbsp;
+        <a href="https://blog.mozilla.org/blog/2014/05/08/zte-starts-sales-of-open-c-firefox-os-phone-on-ebay/">
+          ZTE Starts Sales of Open C Firefox OS Phone on eBay
+        </a>
+        &nbsp;
+        <a href="https://developer.mozilla.org/Firefox_OS/Developer_phone_guide/Flame">
+          Flame
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="owa" class="slide oneline"><div>
+    <section>
+      <header>
+        <h2>Open Web Apps<br>Web APIs</h2>
+      </header>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="owa-manifest" class="slide"><div>
+    <section>
+      <header>
+        <h2>HTML5 + Manifest!</h2>
+      </header>
+      <pre>
+        <code>{</code>
+        <code>  "name": "HuffPost",</code>
+        <code>  "description": "The destination for news, blogs and ...",</code>
+        <code>  ...</code>
+        <code>  "icons": {</code>
+        <code>    "128": "/icon-128.png"</code>
+        <code>  }</code>
+        <code>}</code>
+      </pre>
+      <small class="credits">
+        <a href="http://m.huffpost.com/manifest.webapp">
+          m.huffpost.com/manifest.webapp
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="owa-offline" class="slide"><div>
+    <section>
+      <header>
+        <h2>What if NO Internet?</h2>
+      </header>
+      <pre>
+        <code>{</code>
+        <code>  ...</code>
+        <code>  "name": "Wikipedia",</code>
+        <code>  ...</code>
+        <code>  "appcache_path": "/WikipediaMobileFirefoxOS/app.appcache",</code>
+        <code>  ...</code>
+        <code>}</code>
+      </pre>
+      <small class="credits">
+        <a href="https://bits.wikimedia.org/WikipediaMobileFirefoxOS/manifest.webapp">
+          https://bits.wikimedia.org/WikipediaMobileFirefoxOS/manifest.webapp
+        </a>
+        &nbsp;
+        <a href="https://bugzil.la/ServiceWorkers">
+          ServiceWorkers
+        </a>
+        &nbsp;
+        <a href="http://mozilla.github.io/localForage/">
+          localForage
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webapi-gnome-battery" class="slide cover w"><div>
+    <section>
+      <header>
+        <h2>Battery Status in GNOME</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/gnome-shell-power.png"
+           class="right" height="384"
+           alt="UPower">
+      <small class="credits">
+        <a href="http://upower.freedesktop.org/">
+          UPower
+        </a>
+        &nbsp;
+        <a href="https://wiki.gnome.org/action/show/Projects/Gjs">
+          Gjs
+        </a>
+      </small>
+
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webapi-battery" class="slide"><div>
+    <section>
+      <header>
+        <h2>Battery Status API</h2>
+      </header>
+      <progress class="right" max="100"></progress>
+      <script>
+        (function() {
+          var progress = document.querySelector("#webapi-battery progress");
+          if (progress && navigator.battery) {
+            var updateStatus = function() {
+              progress.value = Math.round(100 * navigator.battery.level);
+              progress.title = progress.value + "%";
+            };
+            navigator.battery.addEventListener("levelchange", updateStatus);
+            updateStatus();
+          }
+        })();
+      </script>
+      <pre>
+        <code>var b = navigator.battery;</code>
+        <code>if (b) {</code>
+        <code>  var level = Math.round(b.level * 100) + "%",</code>
+        <code>      charging = (b.charging) ? "" : "not ";</code>
+        <code>  b.addEventListener("levelchange", show);</code>
+        <code>  b.addEventListener("chargingchange", show);</code>
+        <code>}</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/battery-status/">
+          W3C Candidate Recommendation
+        </a>
+        &nbsp;
+        <a href="https://developer.mozilla.org/docs/WebAPI/Battery_Status">
+          MDN
+        </a>
+      </small>
+
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webapi-regular" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebAPI for regular web content</h2>
+      </header>
+      <ul class="lots loots">
+        <li>Ambient Light Events (CR)</li>
+        <li>Battery Status API (CR)</li>
+        <li>Geolocation API (REC)</li>
+        <li>Indexed Database API (CR)</li>
+        <li>Pointer Lock API (CR)</li>
+        <li>Proximity Events (CR)</li>
+        <li>Vibration API (CR)</li>
+        <li>DeviceOrientation Events (WD)</li>
+        <li>Network Information API (WD)</li>
+        <li>Push API (WD)</li>
+        <li>Screen Orientation API (WD)</li>
+        <li>Web Alarms API (WD)</li>
+        <li>Web Notifications (WD)</li>
+        <li>Web Activities (moz)</li>
+        <li>Web Apps API (moz)</li>
+        <li>WebPayment API (moz)</li>
+        <li>WebFM API (moz)</li>
+      </ul>
+      <small class="credits">
+        <a href="https://developer.mozilla.org/docs/WebAPI/">
+          MDN
+        </a>
+        &nbsp;
+        <a href="http://caniuse.com/#cats=JS_API">
+          Can I Use
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="great-power-responsibility" class="slide"><div>
+    <section>
+      <header>
+        <h2>Not enough for an app?</h2>
+      </header>
+      <blockquote>
+        <p>With great power comes great responsibility.</p>
+        <p class="byline">Spider-Man (2002 film)*</p>
+      </blockquote>
+      <small>* not the original source</small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webapi-permission" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebAPI permissions</h2>
+      </header>
+      <pre>
+        <code>  "type": "privileged",</code>
+        <code>  ...</code>
+        <code>  "permissions": {</code>
+        <code>    ...</code>
+        <code>    "contacts": {</code>
+        <code>      "access": "readwrite",</code>
+        <code>      "description": "Required for using find other LINE users."</code>
+        <code>    },</code>
+      </pre>
+      <small class="credits">
+        <a href="https://marketplace.firefox.com/app/line">
+          LINE | Firefox Marketplace
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webapi-privilege" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebAPI for priviledged/certified apps</h2>
+      </header>
+      <ul class="lots loots">
+        <li>Browser API (p)</li>
+        <li>Contacts API (p)</li>
+        <li>Device Storage API (p)</li>
+        <li>TCP Socket API (p)</li>
+        <li>systemXHR (p)</li>
+      </ul>
+      <ul class="lots loots">
+        <li>Attention screen (c)</li>
+        <li>Camera API (c)</li>
+        <li>Idle API (c)</li>
+        <li>Mobile Connection API (c)</li>
+        <li>Network Stats API (c)</li>
+        <li>Permissions API (c)</li>
+        <li>Power Management API (c)</li>
+        <li>Settings API (c)</li>
+        <li>Time/Clock API (c)</li>
+        <li>Voicemail (c)</li>
+        <li>WebBluetooth (c)</li>
+        <li>WebSMS (c)</li>
+        <li>WebTelephony (c)</li>
+        <li>WiFi Information API (c)</li>
+      </ul>
+      <small class="credits">
+        <a href="https://developer.mozilla.org/docs/WebAPI/">
+          WebAPI
+        </a>
+        &nbsp;
+        <a href="https://developer.mozilla.org/Apps/Build/App_permissions">
+          App permissions
+        </a>
+        &nbsp;
+        <a href="https://developer.mozilla.org/Marketplace/Options/Packaged_apps">
+          Packaged apps
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webapi-dial-activity" class="slide"><div>
+    <section>
+      <header>
+        <h2>Web Activities</h2>
+      </header>
+      <pre>
+        <code>var call = new MozActivity({</code>
+        <code>  name: "dial",</code>
+        <code>  data: {</code>
+        <code>    number: "10010"</code>
+        <code>  }</code>
+        <code>});</code>
+      </pre>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webapi-activities" class="slide"><div>
+    <section>
+      <header>
+        <h2>Web Activities for FxOS</h2>
+      </header>
+      <ul class="lots">
+        <li>browse</li>
+        <li>configure</li>
+        <li>costcontrol/*</li>
+        <li>dial</li>
+        <li>new</li>
+        <li>open</li>
+        <li>pick</li>
+        <li>record</li>
+        <li>save-bookmark</li>
+        <li>share</li>
+        <li>view</li>
+        <li>update</li>
+      </ul>
+      <small class="credits">
+        <a href="https://developer.mozilla.org/docs/WebAPI/">
+          WebAPI
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webrtc" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebRTC</h2>
+      </header>
+      <ul>
+        <li>Firefox 22 for Desktop
+        <li>Firefox 24 for Android
+        <li>Firefox OS 1.2 (audio-capture)
+        <li>Firefox OS 1.4 (video-capture)
+      </ul>
+      <small class="credits">
+        <a href="https://developer.mozilla.org/docs/Web/API/Navigator.getUserMedia">
+          Navigator.getUserMedia - Web API Interfaces | MDN
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webrtc-gum" class="slide"><div>
+    <section>
+      <header>
+        <h2>(moz)GetUserMedia</h2>
+      </header>
+      <button>Camera Toggle</button>
+      <video class="right" height="384"
+             poster="pictures/2014-gnome-asia/webrtc_logo.jpg">
+        Are you kidding? No video support?
+      </video>
+      <script>
+      (function() {
+        var button = document.querySelector("#webrtc-gum button"),
+            video = document.querySelector("#webrtc-gum video");
+        if (navigator.mozGetUserMedia) {
+          button.addEventListener("click", function() {
+            if (video.mozSrcObject) {
+              video.pause();
+              video.mozSrcObject = null;
+            } else {
+              navigator.mozGetUserMedia({
+                video: true,
+                audio: false
+              }, function(aStream) {
+                video.mozSrcObject = aStream;
+                video.play();
+              }, function(aError) {
+                console.error(aError);
+              })
+            }
+          });
+        } else {
+          button.hidden = true;
+        }
+      })();
+      </script>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webrtc-peerconnection" class="slide"><div>
+    <section>
+      <header>
+        <h2>(moz)RTCPeerConnection</h2>
+      </header>
+      <pre>
+        <code>+-----------+                               +-----------+ </code>
+        <code>|  Web App  |<--- App-Specific Signaling -->|  Web App  | </code>
+        <code>+-----------+                               +-----------+ </code>
+        <code>      ^                                            ^      </code>
+        <code>      |  SDP                                       |  SDP </code>
+        <code>      V                                            V      </code>
+        <code>+-----------+                                +-----------+</code>
+        <code>|  Browser  |<----------- Media ------------>|  Browser  |</code>
+        <code>+-----------+                                +-----------+</code>
+      </pre>
+      <small class="credits">
+        <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-06">
+          draft-ietf-rtcweb-jsep-06 - Javascript Session Establishment Protocol
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="webrtc-apps" class="slide"><div>
+    <section>
+      <header>
+        <h2>Apps!</h2>
+      </header>
+      <ul>
+        <li><a href="https://talky.io/">talky.io</a>
+        <li><a href="https://www.sharedrop.io/">ShareDrop</a>
+        <li><a href="https://togetherjs.com/">TogetherJS</a>
+        <li><a href="http://mozilla.com.cn/addon/344-webrtchat/">WebRTChat</a>
+      </ul>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="tools" class="slide oneline"><div>
+    <section>
+      <header>
+        <h2>Tools</h2>
+      </header>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="tools-devtools" class="slide cover w"><div>
+    <section>
+      <header>
+        <h2>Devtools</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/devtools.png"
+           class="right" height="384"
+           alt="Firefox Devtools">
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="tools-appmanager" class="slide cover w"><div>
+    <section>
+      <header>
+        <h2>App Manager</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/app-manager.png"
+           class="right" height="384"
+           alt="Firefox App Manager">
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="tools-cordova" class="slide"><div>
+    <section>
+      <header>
+        <h2>Cordova/PhoneGap</h2>
+      </header>
+      <p>Since version 3.4</p>
+      <pre>
+        <code>sudo npm install -g cordova</code>
+        <code>cordova create hello com.example.hello HelloWorld</code>
+        <code>cd hello</code>
+        <code>cordova platform add firefoxos</code>
+        <code>cordova prepare firefoxos</code>
+      </pre>
+      <small class="credits">
+        <a href="https://hacks.mozilla.org/2014/02/building-cordova-apps-for-firefox-os">
+          Building Cordova apps for Firefox OS
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="app-submission" class="slide"><div>
+    <section>
+      <header>
+        <h2>Submit your app</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/app-submission.png"
+           class="middle" height="384"
+           alt="Submit an app to Firefox Marketplace">
+      <small class="credits">
+        <a href="https://marketplace.firefox.com/developers/submit/">
+          Submit an App | Developers | Firefox Marketplace
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="docs-more" class="slide"><div>
+    <section>
+      <header>
+        <h2>Docs &amp; References</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/docs-references.png"
+           class="middle" height="384"
+           alt="Docs &amp; References">
+      <small class="credits">
+        <a href="https://developer.mozilla.org/en-US/Apps">
+          App Center | MDN
+        </a>
+        &nbsp;
+        <a href="https://hacks.mozilla.org/category/firefox-os/">
+          Firefox OS Articles | Mozilla Hacks
+        </a>
+        &nbsp;
+        <a href="https://marketplace.firefox.com/developers/">
+          Developers | Firefox Marketplace
+        </a>
+      </small>
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="contacts" class="slide"><div>
+    <section>
+      <header>
+        <h2>Contact us</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/wechat.jpg"
+           class="right" height="256"
+           alt="Wechat contact as QRCode">
+      <ul class="nobull">
+        <li><a href="http://mozilla.com.cn/">mozilla.com.cn</a>
+        <li><a href="mailto:cn-community@mozilla.com">cn-community@mozilla.com</a>
+        <li><a href="http://e.weibo.com/firefox">weibo.com/firefox</a>
+        <li>mozilla_firefox @ WeChat
+      </ul>
+    <footer class="notes">
+    </footer>
+    </section>
+  </div></div>
+
+  <div id="thanks" class="slide cover h"><div>
+    <section>
+      <header>
+        <h2>Thanks</h2>
+      </header>
+      <img src="pictures/2014-gnome-asia/redpanda.jpg" class="right" alt="Red panda (Firefox)">
+      <ul class="nobull">
+        <li><a href="https://mozillians.org/u/hectorz/">Hector Zhao</a>
+        <li><a href="mailto:hectorz@mozilla.com">hectorz@mozilla.com</a>
+        <li><a href="http://bit.ly/1niRyue">http://bit.ly/1niRyue</a>
+      </ul>
+      <small class="credits">
+        Photo by Jing
+      </small>
+
+    <footer class="notes">
+    </footer>
+
+    </section>
+  </div></div>
+  <div class="progress"><div></div></div>
+  <script src="scripts/script.js"></script>
+  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>
