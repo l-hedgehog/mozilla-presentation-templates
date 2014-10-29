@@ -1,0 +1,535 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="fade">
+<head>
+  <meta charset="UTF-8">
+  <title>WebRTC – Real-time Communication Between Browsers</title>
+  <meta name="viewport" content="width=device-width, user-scalable=yes">
+  <link rel="stylesheet" href="themes/mozilla/styles/style.css">
+  <style>
+body {
+  font-family: 'OpenSansRegular', sans-serif;
+}
+.slide.cover section {
+  background: url(themes/mozilla/images/bg-sandstone-2.png);
+}
+  </style>
+</head>
+<body class="list">
+  <header class="caption">
+    <h1>WebRTC – Real-time Communication Between Browsers</h1>
+    <p class="footer">
+      Hector Zhao,
+      {<a href="mailto:hectorz@mozilla.com">hectorz@mozilla.com</a>}
+    </p>
+  </header>
+  <aside class="talkdescription">
+    <p>This slide deck is using the shower system - roll over the previews to see the notes and click any slide to go into presentation mode. Then use keys to navigate. <button onclick="goFullScreen()">Go fullscreen</button></p>
+    <p class="abstract">
+      <strong>Abstract: </strong>
+      With more and more modern browsers supporting the APIs commonly known as WebRTC, web developers can provide enhanced communication or collaboration experiences with ease. This session will cover basic usages of getUserMedia, RTCPeerConnection, and RTCDataChannel, and introduce some WebRTC-enabled services created both inside and outside Mozilla.
+    </p>
+  </aside>
+
+  <div id="cover" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebRTC<br>Real-time Communication Between Browsers</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/webrtc_logo.png"
+           class="middle" height="250"
+           alt="WebRTC">
+      <small class="byline">
+        Hector Zhao, openSUSE.Asia, Beijing, 2014-10-19
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-before" class="slide"><div>
+    <section>
+      <header>
+        <h2>Video chat</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/lifehacker-all.png"
+           class="left" height="384"
+           alt="Five Best Apps for Real-Time Video Chat (2011)">
+      <img src="pictures/2014-suse-asia/lifehacker-web.png"
+           class="right" height="384"
+           alt="Five Best Web-Based Video Chat Services (2013)">
+      <ul>
+        <li>Standalone Software</li>
+        <li>Specialized Plugin</li>
+        <li>Adobe Flash Player</li>
+      </ul>
+      <small class="credits">
+        <a href="http://lifehacker.com/5801973/five-best-apps-for-real-time-video-chat">
+          Five Best Apps for Real-Time Video Chat (2011)
+        </a>
+        &nbsp;
+        <a href="http://lifehacker.com/five-best-web-based-video-chat-services-844494319">
+          Five Best Web-Based Video Chat Services (2013)
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-start" lang="en-US" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebRTC</h2>
+      </header>
+      <blockquote class="lots">
+        <p>... define client-side APIs to enable Real-Time Communications in Web browsers. ...</p>
+        <p class="byline">WebRTC WG Charter</p>
+      </blockquote>
+      <blockquote class="lots">
+        <p>... produce architecture and requirements for selection and profiling of the on the wire protocols. ...</p>
+        <p class="byline">rtcweb - Charter</p>
+      </blockquote>
+      <small class="credits">
+        <a href="http://www.w3.org/2011/04/webrtc-charter.html">
+          WebRTC WG Charter
+        </a>
+        &nbsp;
+        <a href="http://datatracker.ietf.org/wg/rtcweb/charter/">
+          rtcweb - Charter
+        </a>
+        &nbsp;
+        <a href="http://lists.w3.org/Archives/Public/public-webrtc/2011May/0022.html">
+          Google release of WebRTC source code
+        </a>
+        &nbsp;
+        <a href="http://www.openwebrtc.io/">
+          OpenWebRTC
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-caniuse" class="slide cover"><div>
+    <section>
+      <header>
+        <h2>Browser Supports</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/caniuse.png"
+           class="middle" height="384"
+           alt="Can I use WebRTC?">
+      <small class="credits">
+        <a href="http://caniuse.com/#search=WebRTC">
+          Can I use... Support tables for HTML5, CSS3, etc
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-interop-peerjs" class="slide"><div>
+    <section>
+      <header>
+        <h2>Cross Browser Compatibility</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/peerjs.png"
+           class="middle" height="384"
+           alt="PeerJS Status">
+      <small class="credits">
+        <a href="http://peerjs.com/status/">
+          PeerJS Status
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-fxos" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox OS</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/fxos.png"
+           class="middle" height="384"
+           alt="Can I use WebRTC?">
+    </section>
+  </div></div>
+
+  <div id="webrtc-hangouts-webrtc" class="slide"><div>
+    <section>
+      <header>
+        <h2>Google Hangouts</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/hangouts.png"
+           class="middle" height="384"
+           alt="Google Hangouts">
+      <small class="credits">
+        <a href="https://plus.google.com/u/0/103171586947853434456/posts/39TCW3PcLye">
+          Hangouts in an instant: Video chat without downloading a plugin
+        </a>
+      </small>
+
+    </section>
+  </div></div>
+
+  <div id="webrtc-hangouts-not-webrtc-yet" class="slide"><div>
+    <section>
+      <header>
+        <h2>Google Hangouts (again)</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/hangouts-non-standard.png"
+           class="middle" height="204"
+           alt="Non-standard technology used in Google Hangouts">
+      <small class="credits">
+        <a href="http://webrtchacks.com/hangout-analysis-philipp-hancke/">
+          How does Hangouts use WebRTC? a chrome://webrtc-internals analysis (Philipp Hancke) | webrtcHacks
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-gum" class="slide"><div>
+    <section>
+      <header>
+        <h2>Contents</h2>
+      </header>
+      <video class="right" height="384"
+             poster="pictures/2014-suse-asia/webrtc_logo.jpg">
+        Are you kidding? No video support?
+      </video>
+      <ul>
+        <li>Code Snippets
+        <li>Underlying Concepts
+        <li>Sample Applications
+      </ul>
+      <button>Toggle Camera</button>
+      <script>
+      (function() {
+        var button = document.querySelector("#webrtc-gum button"),
+            video = document.querySelector("#webrtc-gum video");
+        if (navigator.mozGetUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.getUserMedia) {
+          button.addEventListener("click", function() {
+            if (video.src && ["blob", "mediastream"].indexOf(video.src.split(":")[0]) > -1) {
+              video.pause();
+              video.src = "";
+            } else {
+              var getUserMedia = (navigator.mozGetUserMedia ||
+                                  navigator.webkitGetUserMedia ||
+                                  navigator.getUserMedia).bind(navigator);
+              getUserMedia({
+                video: true,
+                audio: false
+              }, function(aStream) {
+                video.src = URL.createObjectURL(aStream);
+                video.play();
+              }, function(aError) {
+                console.error(aError);
+              })
+            }
+          });
+        } else {
+          button.hidden = true;
+        }
+      })();
+      </script>
+    </section>
+  </div></div>
+
+  <div id="webrtc-gum-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>getUserMedia</h2>
+      </header>
+      <pre>
+        <code>navigator.getUserMedia({video:true}, gotStream, noStream);</code>
+        <code>var video = document.querySelector('video');</code>
+        <code>function gotStream(stream) {</code>
+        <code>  video.src = URL.createObjectURL(stream);</code>
+        <code>}</code>
+        <code>function noStream() {</code>
+        <code>  document.getElementById('errorMessage').textContent = 'No camera available.';</code>
+        <code>}</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/mediacapture-streams/">
+          Media Capture and Streams
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-peerconnection-code" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCPeerConnection (to be cont'd)</h2>
+      </header>
+      <pre>
+        <code>var pc = new RTCPeerConnection({</code>
+        <code>  "iceServers": [{ "url": "stun:stun.example.org" }]</code>
+        <code>});</code>
+        <code>...</code>
+        <code>pc.addStream(stream);</code>
+        <code>pc.createOffer(function localDescCreated(desc) {</code>
+        <code>  pc.setLocalDescription(desc, function () {</code>
+        <code>    signalingChannel.send({ sdp: pc.localDescription });</code>
+        <code>  }, logError);</code>
+        <code>...</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/webrtc/">
+          WebRTC 1.0: Real-time Communication Between Browsers
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-peerconnection-code-contd" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCPeerConnection (cont'd)</h2>
+      </header>
+      <pre>
+        <code>pc.onaddstream = function (evt) {</code>
+        <code>  remoteView.src = URL.createObjectURL(evt.stream);</code>
+        <code>};</code>
+        <code>signalingChannel.onmessage = function (evt) {</code>
+        <code>  var message = JSON.parse(evt.data);</code>
+        <code>  if (message.sdp) {</code>
+        <code>    pc.setRemoteDescription(message.sdp, function () {</code>
+        <code>      if (pc.remoteDescription.type == "offer") {</code>
+        <code>        pc.createAnswer(localDescCreated, logError);</code>
+        <code>...</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/webrtc/">
+          WebRTC 1.0: Real-time Communication Between Browsers
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-datachannel" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCDataChannel</h2>
+      </header>
+      <pre>
+        <code>channel = pc.createDataChannel("chat");</code>
+      </pre>
+      <pre>
+        <code>pc.ondatachannel = function (evt) {</code>
+        <code>  channel = evt.channel;</code>
+        <code>};</code>
+      </pre>
+      <pre>
+        <code>channel.onopen = function(evt) {};</code>
+        <code>channel.onmessage = function(evt) {};</code>
+      </pre>
+      <small class="credits">
+        <a href="http://www.w3.org/TR/webrtc/">
+          WebRTC 1.0: Real-time Communication Between Browsers
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-peerconnection" class="slide"><div>
+    <section>
+      <header>
+        <h2>RTCPeerConnection</h2>
+      </header>
+      <pre>
+        <code>+-----------+                               +-----------+ </code>
+        <code>|  Web App  |<--- App-Specific Signaling -->|  Web App  | </code>
+        <code>+-----------+                               +-----------+ </code>
+        <code>      ^                                            ^      </code>
+        <code>      |  SDP                                       |  SDP </code>
+        <code>      V                                            V      </code>
+        <code>+-----------+                                +-----------+</code>
+        <code>|  Browser  |<----------- Media ------------>|  Browser  |</code>
+        <code>+-----------+                                +-----------+</code>
+      </pre>
+      <small class="credits">
+        <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep">
+          draft-ietf-rtcweb-jsep - Javascript Session Establishment Protocol
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-sdp" class="slide"><div>
+    <section>
+      <header>
+        <h2>Session Description Protocol</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/sdp.png"
+           class="middle" height="384"
+           alt="SDP Answer">
+      <small class="credits">
+        <a href="http://webrtchacks.com/sdp-anatomy/">
+          Anatomy of a WebRTC SDP - webrtcHacks
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-openh264" class="slide"><div>
+    <section>
+      <header>
+        <h2>OpenH264</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/openh264.png"
+           class="middle" height="384"
+           alt="OpenH264 as loaded into Firefox">
+      <small class="credits">
+        <a href="https://blog.mozilla.org/blog/2013/10/30/video-interoperability-on-the-web-gets-a-boost-from-ciscos-h-264-codec/">
+          Video Interoperability on the Web Gets a Boost From Cisco&#8217;s H.264 Codec | The Mozilla Blog
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-dtls" class="slide"><div>
+    <section>
+      <header>
+        <h2>Datagram Transport Layer Security</h2>
+      </header>
+      <ul>
+        <li>Similar security guarantees to TLS
+        <li>Preserves NOT reliable or in-order delivery of data
+        <li>Relying on a secure signaling channel
+      </ul>
+      <small class="credits">
+        <a href="http://tools.ietf.org/html/rfc6347">
+          RFC 6347 - Datagram Transport Layer Security Version 1.2
+        </a>
+        &nbsp;
+        <a href="https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch">
+          draft-ietf-rtcweb-security-arch - WebRTC Security Architecture
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-apps" class="slide"><div>
+    <section>
+      <header>
+        <h2>Applications</h2>
+      </header>
+      <ul>
+        <li><a href="https://talky.io/">Talky.io</a>
+        <li><a href="http://blog.phono.com/tag/webrtc/">Phono</a> <a href="https://www.twilio.com/blog/2012/11/webrtc-for-twilio-client-now-available.html">twilio</a>
+        <li><a href="https://www.reep.io/">reep.io</a> <a href="https://www.sharedrop.io/">ShareDrop</a>
+        <li><a href="http://bem.tv/">BemTV</a> <a href="https://peercdn.com/">PeerCDN</a>
+        <li><a href="https://togetherjs.com/">TogetherJS</a> <a href="http://codassium.com/">(codassium);</a>
+        <li><a href="https://wiki.mozilla.org/Loop">Firefox Hello</a>
+      </ul>
+    </section>
+  </div></div>
+
+  <div id="webrtc-sharedrop" class="slide cover"><div>
+    <section>
+      <header>
+        <h2>ShareDrop</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/sharedrop.png"
+           class="middle" height="384"
+           alt="ShareDrop">
+      <small class="credits">
+        <a href="https://www.sharedrop.io/">
+          ShareDrop
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-togetherjs" class="slide cover"><div>
+    <section>
+      <header>
+        <h2>TogetherJS</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/togetherjs-jsfiddle.png"
+           class="middle"
+           alt="TogetherJS @ JSFiddle">
+      <small class="credits">
+        <a href="https://togetherjs.com/">
+          Mozilla Labs : TogetherJS
+        </a>
+        &nbsp;
+        <a href="http://jsfiddle.net/">
+          JSFiddle
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-loop" class="slide"><div>
+    <section>
+      <header>
+        <h2>Firefox Hello</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/hello-contacts.png"
+           class="middle" height="354"
+           alt="Firefox Hello (contacts)">
+      <small class="credits">
+        <a href="http://blog.mozilla.org/futurereleases/2014/10/16/test-the-new-firefox-hello-webrtc-feature-in-firefox-beta/">
+          Test the new Firefox Hello WebRTC feature in Firefox Beta | Future Releases
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="webrtc-resources" class="slide"><div>
+    <section>
+      <header>
+        <h2>Resources</h2>
+      </header>
+      <ul>
+        <li><a href="https://tokbox.com/opentok/libraries/client/js/">tokbox.com/opentok/</a>
+        <li><a href="http://peerjs.com/">peerjs.com</a>
+        <li><a href="http://simplewebrtc.com/">simplewebrtc.com</a>
+        <li><a href="https://vline.com/developer/docs/vline.js/">vline.com/developer/</a>
+        <li><a href="https://github.com/webRTC/webRTC.io">github.com/webRTC/webRTC.io</a>
+      </ul>
+      <ul>
+        <li><a href="http://www.webrtc.org/">www.webrtc.org</a>
+        <li><a href="http://webrtchacks.com/">webrtchacks.com</a>
+        <li><a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/">www.html5rocks.com/en/tutorials/webrtc/basics/</a>
+        <li><a href="https://hacks.mozilla.org/category/webrtc/">hacks.mozilla.org/category/webrtc/</a>
+      </ul>
+    </section>
+  </div></div>
+
+  <div id="contacts" class="slide"><div>
+    <section>
+      <header>
+        <h2>Contact us</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/wechat.jpg"
+           class="right" height="256"
+           alt="Wechat contact as QRCode">
+      <ul class="nobull">
+        <li><a href="http://mozilla.com.cn/">mozilla.com.cn</a>
+        <li><a href="mailto:cn-community@mozilla.com">cn-community@mozilla.com</a>
+        <li><a href="http://e.weibo.com/firefox">weibo.com/firefox</a>
+        <li>mozilla_firefox @ WeChat
+      </ul>
+    </section>
+  </div></div>
+
+  <div id="thanks" class="slide cover h"><div>
+    <section>
+      <header>
+        <h2>Thanks</h2>
+      </header>
+      <img src="pictures/2014-suse-asia/redpanda.jpg" class="right" alt="Red panda (Firefox)">
+      <ul class="nobull">
+        <li><a href="https://mozillians.org/u/hectorz/">Hector Zhao</a>
+        <li><a href="mailto:hectorz@mozilla.com">hectorz@mozilla.com</a>
+        <li><a href="http://bit.ly/1sOQizR">http://bit.ly/1sOQizR</a>
+      </ul>
+      <small class="credits">
+        Photo by Jing
+      </small>
+    </section>
+  </div></div>
+  <div class="progress"><div></div></div>
+  <script src="scripts/script.js"></script>
+  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>
