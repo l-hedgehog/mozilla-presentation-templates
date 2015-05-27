@@ -12,6 +12,349 @@ body {
 .slide.cover section {
   background: url(themes/mozilla/images/bg-sandstone-2.png);
 }
+
+/****************************************************************************/
+/****************************************************************************/
+#hello-animation-fallback {
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+#hello-animation-stage {
+  position: relative;
+  width: 300px;
+  height: 189px;
+  margin: 0 auto;
+}
+#hello-animation-stage div {
+  display: none;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+#hello-animation-stage #hello-conversation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+#hello-animation-stage .hello-message {
+  opacity: 0;
+  -webkit-transform: scale(0) translateY(100px);
+  -ms-transform: scale(0) translateY(100px);
+  transform: scale(0) translateY(100px);
+}
+#hello-animation-stage .hello-message-green {
+  right: 0;
+}
+#hello-animation-stage #hello-message-blue1 {
+  background-position: left -257px;
+  width: 140px;
+  height: 119px;
+  left: 0;
+}
+#hello-animation-stage #hello-message-green1 {
+  background-position: left -376px;
+  width: 140px;
+  height: 122px;
+  right: 0;
+}
+#hello-animation-stage #hello-message-blue2 {
+  background-position: left -498px;
+  width: 140px;
+  height: 120px;
+  left: 0;
+}
+#hello-animation-stage #hello-message-green2 {
+  background-position: left -618px;
+  width: 130px;
+  height: 121px;
+  right: 10px;
+}
+#hello-animation-stage #hello-message-blue3 {
+  background-position: left -739px;
+  width: 125px;
+  height: 118px;
+  left: 10px;
+}
+#hello-animation-stage #hello-message-green3 {
+  background-position: left -857px;
+  width: 140px;
+  height: 117px;
+  right: 0;
+}
+#hello-animation-stage #hello-message-blue4 {
+  background-position: left -974px;
+  width: 130px;
+  height: 122px;
+  left: 12px;
+}
+#hello-animation-stage #hello-message-green4 {
+  background-position: left -1096px;
+  width: 140px;
+  height: 118px;
+  right: 0;
+}
+#hello-animation-stage #hello-message-blue-face {
+  background-position: left top;
+  width: 140px;
+  height: 133px;
+  left: 5px;
+  top: 0;
+}
+#hello-animation-stage #hello-message-green-face {
+  background-position: left -133px;
+  width: 130px;
+  height: 124px;
+  right: 5px;
+  bottom: 44px;
+}
+#hello-animation-stage #hello-wordmark {
+  background-position: left -1214px;
+  width: 300px;
+  height: 49px;
+  top: 48px;
+  left: 0;
+  opacity: 0;
+  -webkit-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
+  z-index: 4;
+}
+#hello-animation-stage.animate #hello-animation-fallback {
+  opacity: 0;
+}
+#hello-animation-stage.animate div {
+  display: block;
+}
+#hello-animation-stage.animate .hello-sprite {
+  background-image: url(pictures/2015-chengdu-meetup/sprite-animation-mini.png);
+  background-repeat: no-repeat;
+}
+#hello-animation-stage.animate #hello-message-blue1 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 0.2s, hello-message-out 0.3s ease-in forwards 0.7s;
+  animation: hello-message-in 0.4s ease forwards 0.2s, hello-message-out 0.3s ease-in forwards 0.7s;
+}
+#hello-animation-stage.animate #hello-message-green1 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 0.4s, hello-message-out 0.3s ease-in forwards 0.9s;
+  animation: hello-message-in 0.4s ease forwards 0.4s, hello-message-out 0.3s ease-in forwards 0.9s;
+}
+#hello-animation-stage.animate #hello-message-blue2 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 1s, hello-message-out 0.3s ease-in forwards 1.5s;
+  animation: hello-message-in 0.4s ease forwards 1s, hello-message-out 0.3s ease-in forwards 1.5s;
+}
+#hello-animation-stage.animate #hello-message-green2 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 1.2s, hello-message-out 0.3s ease-in forwards 1.7s;
+  animation: hello-message-in 0.4s ease forwards 1.2s, hello-message-out 0.3s ease-in forwards 1.7s;
+}
+#hello-animation-stage.animate #hello-message-blue3 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 1.8s, hello-message-out 0.3s ease-in forwards 2.3s;
+  animation: hello-message-in 0.4s ease forwards 1.8s, hello-message-out 0.3s ease-in forwards 2.3s;
+}
+#hello-animation-stage.animate #hello-message-green3 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 2s, hello-message-out 0.3s ease-in forwards 2.5s;
+  animation: hello-message-in 0.4s ease forwards 2s, hello-message-out 0.3s ease-in forwards 2.5s;
+}
+#hello-animation-stage.animate #hello-message-blue4 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 2.6s, hello-message-out 0.3s ease-in forwards 3.1s;
+  animation: hello-message-in 0.4s ease forwards 2.6s, hello-message-out 0.3s ease-in forwards 3.1s;
+}
+#hello-animation-stage.animate #hello-message-green4 {
+  -webkit-animation: hello-message-in 0.4s ease forwards 2.8s, hello-message-out 0.3s ease-in forwards 3.3s;
+  animation: hello-message-in 0.4s ease forwards 2.8s, hello-message-out 0.3s ease-in forwards 3.3s;
+}
+#hello-animation-stage.animate #hello-message-blue-face {
+  -webkit-animation: hello-message-in 0.4s ease forwards 3.4s, hello-message-blue-face-shrink 0.6s ease forwards 4.5s;
+  animation: hello-message-in 0.4s ease forwards 3.4s, hello-message-blue-face-shrink 0.6s ease forwards 4.5s;
+}
+#hello-animation-stage.animate #hello-message-green-face {
+  -webkit-animation: hello-message-in 0.4s ease forwards 3.6s, hello-message-green-face-out 0.3s ease forwards 4.5s;
+  animation: hello-message-in 0.4s ease forwards 3.6s, hello-message-green-face-out 0.3s ease forwards 4.5s;
+}
+#hello-animation-stage.animate #hello-wordmark {
+  -webkit-animation: hello-wordmark-in 0.75s ease forwards 4.6s;
+  animation: hello-wordmark-in 0.75s ease forwards 4.6s;
+}
+@-webkit-keyframes hello-message-in {
+  0% {
+    -webkit-transform: scale(0) translateY(100px);
+    -ms-transform: scale(0) translateY(100px);
+    transform: scale(0) translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes hello-message-in {
+  0% {
+    -webkit-transform: scale(0) translateY(100px);
+    -ms-transform: scale(0) translateY(100px);
+    transform: scale(0) translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes hello-message-out {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.7) translateY(-50px);
+    -ms-transform: scale(0.7) translateY(-50px);
+    transform: scale(0.7) translateY(-50px);
+    opacity: 0;
+  }
+}
+@keyframes hello-message-out {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.7) translateY(-50px);
+    -ms-transform: scale(0.7) translateY(-50px);
+    transform: scale(0.7) translateY(-50px);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes hello-message-green-face-out {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.4) translateY(0);
+    -ms-transform: scale(0.4) translateY(0);
+    transform: scale(0.4) translateY(0);
+    opacity: 0;
+  }
+}
+@keyframes hello-message-green-face-out {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.4) translateY(0);
+    -ms-transform: scale(0.4) translateY(0);
+    transform: scale(0.4) translateY(0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes hello-message-blue-face-shrink {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.37) translate(-133px, 22px);
+    -ms-transform: scale(0.37) translate(-133px, 22px);
+    transform: scale(0.37) translate(-133px, 22px);
+    opacity: 1;
+  }
+}
+@keyframes hello-message-blue-face-shrink {
+  0% {
+    -webkit-transform: scale(1) translateY(0);
+    -ms-transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0.37) translate(-133px, 22px);
+    -ms-transform: scale(0.37) translate(-133px, 22px);
+    transform: scale(0.37) translate(-133px, 22px);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes hello-wordmark-in {
+  0% {
+    -webkit-transform: translateY(15px);
+    -ms-transform: translateY(15px);
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes hello-wordmark-in {
+  0% {
+    -webkit-transform: translateY(15px);
+    -ms-transform: translateY(15px);
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/****************************************************************************/
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx), (min-resolution: 144dpi) {
+  #hello-animation-stage.animate .hello-sprite {
+    background-image: url(pictures/2015-chengdu-meetup/sprite-animation-mini-high-res.png);
+    -webkit-background-size: 300px 1263px;
+    background-size: 300px 1263px;
+  }
+  @-webkit-keyframes hello-message-blue-face-shrink {
+    0% {
+      -webkit-transform: scale(1) translateY(0);
+      -ms-transform: scale(1) translateY(0);
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(0.375) translate(-133px, 22px);
+      -ms-transform: scale(0.375) translate(-133px, 22px);
+      transform: scale(0.375) translate(-133px, 22px);
+      opacity: 1;
+    }
+  }
+  @keyframes hello-message-blue-face-shrink {
+    0% {
+      -webkit-transform: scale(1) translateY(0);
+      -ms-transform: scale(1) translateY(0);
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(0.375) translate(-133px, 22px);
+      -ms-transform: scale(0.375) translate(-133px, 22px);
+      transform: scale(0.375) translate(-133px, 22px);
+      opacity: 1;
+    }
+  }
+}
   </style>
 </head>
 <body class="list">
@@ -49,55 +392,43 @@ body {
       <header>
         <h2>Web</h2>
       </header>
-      <img src="pictures/2015-chengdu-meetup/lifehacker-all.png"
-           class="left" height="384"
-           alt="Five Best Apps for Real-Time Video Chat (2011)">
-      <img src="pictures/2015-chengdu-meetup/lifehacker-web.png"
-           class="right" height="384"
-           alt="Five Best Web-Based Video Chat Services (2013)">
-      <ul>
-        <li>独立软件</li>
-        <li>独立插件</li>
-        <li>Flash Player</li>
-      </ul>
+      <blockquote class="lots">
+        <p>The WorldWideWeb (W3) is a wide-area hypermedia information retrieval initiative aiming to give universal access to a large universe of documents.</p>
+        <p class="byline">The World Wide Web project</p>
+      </blockquote>
       <small class="credits">
-        <a href="http://lifehacker.com/5801973/five-best-apps-for-real-time-video-chat">
-          Five Best Apps for Real-Time Video Chat (2011)
-        </a>
-        &nbsp;
-        <a href="http://lifehacker.com/five-best-web-based-video-chat-services-844494319">
-          Five Best Web-Based Video Chat Services (2013)
+        <a href="http://www.w3.org/History/19921103-hypertext/hypertext/WWW/TheProject.html">
+          The World Wide Web project
         </a>
       </small>
     </section>
   </div></div>
 
-  <div id="web-pages" class="slide"><div>
+  <div id="web-documents" class="slide"><div>
     <section>
       <header>
-        <h2>内容展示</h2>
+        <h2>Web 文档</h2>
       </header>
-      <img src="pictures/2015-chengdu-meetup/hangouts.png"
-           class="middle" height="384"
-           alt="Google Hangouts">
-      <small class="credits">
-        <a href="https://plus.google.com/u/0/103171586947853434456/posts/39TCW3PcLye">
-          Hangouts in an instant: Video chat without downloading a plugin
-        </a>
-      </small>
+      <pre>
+        <code>&gt; GET / HTTP/1.1</code>
+        <code>&gt; Host: test.example.com</code>
+        <code>&gt; </code>
+        <code>&lt; HTTP/1.1 200 OK</code>
+        <code>&lt; Content-Type: text/html</code>
+        <code>&lt; </code>
+        <code>&lt;!doctype html&gt;</code>
+        <code>&lt;title&gt;Web document for test&lt;/title&gt;</code>
+        <code>&lt;h1&gt;Hello World!&lt;/h1&gt;</code>
+      </pre>
 
     </section>
   </div></div>
 
-  <div id="web-application" lang="en-US" class="slide"><div>
+  <div id="web-application" class="slide"><div>
     <section>
       <header>
         <h2>Web 应用</h2>
       </header>
-      <blockquote class="lots">
-        <p>... define client-side APIs to enable Real-Time Communications in Web browsers. ...</p>
-        <p class="byline">WebRTC WG Charter</p>
-      </blockquote>
       <blockquote class="lots">
         <p>... produce architecture and requirements for selection and profiling of the on the wire protocols. ...</p>
         <p class="byline">rtcweb - Charter</p>
@@ -106,29 +437,48 @@ body {
         <a href="http://www.w3.org/2011/04/webrtc-charter.html">
           WebRTC WG Charter
         </a>
-        &nbsp;
-        <a href="http://datatracker.ietf.org/wg/rtcweb/charter/">
-          rtcweb - Charter
-        </a>
-        &nbsp;
-        <a href="http://lists.w3.org/Archives/Public/public-webrtc/2011May/0022.html">
-          Google release of WebRTC source code
-        </a>
       </small>
     </section>
   </div></div>
 
-  <div id="tech-animation" class="slide cover"><div>
+  <div id="tech-animation" class="slide" data-should-animate="#hello-animation-stage"><div>
     <section>
       <header>
         <h2>动画</h2>
       </header>
-      <img src="pictures/2015-chengdu-meetup/caniuse.png"
-           class="middle" height="384"
-           alt="Can I use WebRTC?">
+
+<div id="hello-animation-stage">
+  <img src="pictures/2015-chengdu-meetup/hello-2.png" width="300" alt="Firefox Hello" id="hello-animation-fallback" height="188">
+
+  <div id="hello-conversation">
+    <div class="hello-sprite hello-message" id="hello-message-blue1"></div>
+    <div class="hello-sprite hello-message" id="hello-message-green1"></div>
+    <div class="hello-sprite hello-message" id="hello-message-blue2"></div>
+    <div class="hello-sprite hello-message" id="hello-message-green2"></div>
+    <div class="hello-sprite hello-message" id="hello-message-blue3"></div>
+    <div class="hello-sprite hello-message" id="hello-message-green3"></div>
+    <div class="hello-sprite hello-message" id="hello-message-blue4"></div>
+    <div class="hello-sprite hello-message" id="hello-message-green4"></div>
+    <div class="hello-sprite hello-message" id="hello-message-blue-face"></div>
+    <div class="hello-sprite hello-message" id="hello-message-green-face"></div>
+  </div>
+
+  <div class="hello-sprite" id="hello-wordmark"></div>
+</div>
+      <button>开始动画</button>
+      <script>
+      (function() {
+        var button = document.querySelector("#tech-animation button"),
+            animation = document.querySelector("#hello-animation-stage");
+        button.addEventListener("click", function() {
+          animation.className = "animate";
+        });
+      })();
+      </script>
+
       <small class="credits">
-        <a href="http://caniuse.com/#search=WebRTC">
-          Can I use... Support tables for HTML5, CSS3, etc
+        <a href="https://github.com/mozilla/bedrock/commit/eb6471a1e0a3395f32f21e39c3ce497e1f3c3070">
+          Add firstrun and whatsnew pages. Bug 1099471. · mozilla/bedrock@eb6471a · GitHub
         </a>
       </small>
     </section>
