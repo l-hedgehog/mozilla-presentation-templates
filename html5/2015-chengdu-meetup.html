@@ -545,8 +545,8 @@ body {
       </video>
       <ul>
         <li>getUserMedia
-        <li>RTCPeerConnection (DTLS)
-        <li>Offer/Answer
+        <li>RTCPeerConnection
+        <li>offer / answer
         <li>multistream / renegotiation
       </ul>
       <button>切换摄像头</button>
@@ -596,82 +596,93 @@ body {
       </header>
       <img src="pictures/2015-chengdu-meetup/youtube-dash.png"
            class="middle" height="384"
-           alt="MSE/DASH used by YouTube">
-      <!--<p>视频下载进度: <span id="videoProgress">0</span>% | 音频下载进度: <span id="audioProgress">0</span>%</p>
+           alt="MSE used by YouTube">
+    </section>
+  </div></div>
+
+  <div id="tech-video-demo" class="slide"><div>
+    <section>
+      <header>
+        <h2>MSE (&amp; EME)</h2>
+      </header>
+      <p>视频下载进度: <span id="videoProgress">0</span>% | 音频下载进度: <span id="audioProgress">0</span>%</p>
 
       <video id="v" controls class="middle shadow" height="384" preload="auto">
-      </video>-->
+      </video>
       <small class="credits">
-        <a href="http://people.mozilla.org/~cpearce/mse-clearkey/">
-          MSE + EME Demo
+        <a href="https://github.com/cpearce/mse-eme">
+          Demo of ClearKey EME content playing via MSE
         </a>
       </small>
-      <!--<script>
+      <script>
       (function() {
 
       const KEYSYSTEM_TYPE = "org.w3.clearkey";
 
       function Load() {
-        if (!navigator.requestMediaKeySystemAccess) {
-          log("EME API is not supported. Enable pref media.eme.enabled to true in about:config");
-          return;
-        }
-
-        var video = e("v");
-
-        // Log events dispatched to make debugging easier...
-        [ "canplay", "canplaythrough", "encrypted", "ended", "error", "loadeddata",
-          "loadedmetadata", "loadstart", "pause", "play", "playing", "progress",
-          "stalled", "suspend", "waiting",
-        ].forEach(function (e) {
-          v.addEventListener(e, function(event) {
-            log("EVENT: " + e);
-          }, false);
-        });
-
-
-        var keys = {
-          // "keyid" : "key"
-          "7e571d037e571d037e571d037e571d03" : "7e5733337e5733337e5733337e573333",
-          "7e571d047e571d047e571d047e571d04" : "7e5744447e5744447e5744447e574444",
-        };
-
-        var options = [
-          {
-            initDataType: "cenc",
-            videoType: "video/mp4",
+        try {
+          if (!navigator.requestMediaKeySystemAccess) {
+            log("EME API is not supported. Enable pref media.eme.enabled to true in about:config");
+            return;
           }
-        ];
 
+          var video = e("v");
 
-        SetupEME(video, KEYSYSTEM_TYPE, "video", keys, options);
+          // Log events dispatched to make debugging easier...
+          [ "canplay", "canplaythrough", "encrypted", "ended", "error", "loadeddata",
+            "loadedmetadata", "loadstart", "pause", "play", "playing", "progress",
+            "stalled", "suspend", "waiting",
+          ].forEach(function (e) {
+            v.addEventListener(e, function(event) {
+              log("EVENT: " + e);
+            }, false);
+          });
 
-        var ms = new MediaSource();
-        video.src = URL.createObjectURL(ms);
+          var keys = {
+            // "keyid" : "key"
+            "7e571d037e571d037e571d037e571d03" : "7e5733337e5733337e5733337e573333",
+            "7e571d047e571d047e571d047e571d04" : "7e5744447e5744447e5744447e574444",
+          };
 
-        function downloadProgress(id) {
-          return function(percent) {
-            e(id).innerHTML = percent;
+          var options = [
+            {
+              initDataType: "cenc",
+              videoType: "video/mp4",
+            }
+          ];
+
+          SetupEME(video, KEYSYSTEM_TYPE, "video", keys, options);
+
+          var ms = new MediaSource();
+          video.src = URL.createObjectURL(ms);
+
+          function downloadProgress(id) {
+            return function(percent) {
+              e(id).innerHTML = percent;
+            }
           }
+
+          var SourceOpen = function () {
+            ms.removeEventListener("sourceopen", SourceOpen);
+            log(name + " sourceopen");
+            Promise.all([MSELoadTrack(videoFragments, "video/mp4", ms, "video", downloadProgress("videoProgress")),
+                         MSELoadTrack(audioFragments, "audio/mp4", ms, "audio", downloadProgress("audioProgress"))])
+              .then(function(){log("All segments downloaded"); ms.endOfStream();});
+          }
+
+          ms.addEventListener("sourceopen", SourceOpen);
+          video.addEventListener("canplay", function(){video.play();});
+
+          e("tech-video").classList.add("inactive");
+        } catch(ex) {
+          e("tech-video-demo").classList.add("inactive");
         }
-
-        var SourceOpen = function () {
-          ms.removeEventListener("sourceopen", SourceOpen);
-          log(name + " sourceopen");
-          Promise.all([MSELoadTrack(videoFragments, "video/mp4", ms, "video", downloadProgress("videoProgress")),
-                       MSELoadTrack(audioFragments, "audio/mp4", ms, "audio", downloadProgress("audioProgress"))])
-
-            .then(function(){log("All segments downloaded"); ms.endOfStream();});
-        }
-
-        ms.addEventListener("sourceopen", SourceOpen);
-        video.addEventListener("canplay", function(){video.play();});
       }
 
       window.addEventListener("load", Load, false);
 
       })();
-      </script>-->
+      </script>
     </section>
   </div></div>
 
@@ -923,9 +934,9 @@ body {
   </div></div>
   <div class="progress"><div></div></div>
   <script src="scripts/script.js"></script>
-  <!--<script src="scripts/2015-chengdu-meetup/resources.js"></script>
+  <script src="scripts/2015-chengdu-meetup/resources.js"></script>
   <script src="scripts/2015-chengdu-meetup/mse.js"></script>
-  <script src="scripts/2015-chengdu-meetup/eme.js"></script>-->
+  <script src="scripts/2015-chengdu-meetup/eme.js"></script>
   <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
 </body>
 </html>
