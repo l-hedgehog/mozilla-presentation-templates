@@ -9,8 +9,27 @@
 body {
   font-family: 'OpenSansRegular', sans-serif;
 }
+.slide header ruby {
+  text-transform: none;
+}
 .slide.cover section {
   background: url(themes/mozilla/images/bg-sandstone-2.png);
+}
+
+@counter-style cs-additive {
+  system: additive;
+  range: 1 3;
+  additive-symbols: 1 I;
+}
+#tech-html-css .additive {
+  list-style: outside none cs-additive;
+}
+#tech-html-css.slide ol.additive > li::before {
+  content: "";
+}
+#tech-html-css .vertical {
+  max-height: 60%;
+  writing-mode: vertical-rl;
 }
 
 /****************************************************************************/
@@ -355,53 +374,6 @@ body {
     }
   }
 }
-
-/* css ribbon */
-.ribbon {
-  font-size: 16px !important;
-  /* This ribbon is based on a 16px font side and a 24px vertical rhythm. I've used em's to position each element for scalability. If you want to use a different font size you may have to play with the position of the ribbon elements */
-
-  position: relative;
-  background: #ba89b6;
-  color: #fff;
-  text-align: center;
-  padding: 1em 2em; /* Adjust to suit */
-  margin: 0 0 3em; /* Based on 24px vertical rhythm. 48px bottom margin - normally 24 but the ribbon 'graphics' take up 24px themselves so we double it. */
-}
-.ribbon:before, .ribbon:after {
-  content: "";
-  position: absolute;
-  display: block;
-  bottom: -1em;
-  border: 1.5em solid #986794;
-  z-index: -1;
-}
-.ribbon:before {
-  left: -2em;
-  border-right-width: 1.5em;
-  border-left-color: transparent;
-}
-.ribbon:after {
-  right: -2em;
-  border-left-width: 1.5em;
-  border-right-color: transparent;
-}
-.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
-  content: "";
-  position: absolute;
-  display: block;
-  border-style: solid;
-  border-color: rebeccapurple transparent transparent transparent;
-  bottom: -1em;
-}
-.ribbon .ribbon-content:before {
-  left: 0;
-  border-width: 1em 0 0 1em;
-}
-.ribbon .ribbon-content:after {
-  right: 0;
-  border-width: 1em 1em 0 0;
-}
   </style>
 </head>
 <body class="list">
@@ -416,25 +388,25 @@ body {
     <p>This slide deck is using the shower system - roll over the previews to see the notes and click any slide to go into presentation mode. Then use keys to navigate. <button onclick="goFullScreen()">Go fullscreen</button></p>
     <p class="abstract">
       <strong>摘要: </strong>
-      简介 Firefox 中新引入的 HTML/CSS/JavaScript 功能，。
+      简介 Firefox 中最新实现的 HTML/CSS/JavaScript 特性和开发者工具。
     </p>
   </aside>
 
   <div id="cover" class="slide"><div>
     <section>
       <header>
-        <h2>Web 应用开发<ruby><rb>入<rp>(</rp><rt>pǎo<rp>)</rp><rb>门<rp>(</rp><rt>tí<rp>)</rp></ruby></h2>
+        <h2>Web 应用开发入门</h2>
       </header>
-      <img src="pictures/2015-chengdu-meetup/webrtc_logo.png"
-           class="middle" height="250"
-           alt="WebRTC">
+      <img src="pictures/2015-chengdu-meetup/devedition.png"
+           class="middle" height="384"
+           alt="Firefox Developer Edition">
       <small class="byline">
         赵博通, Firefox 社区见面会, 成都, 2015年05月30日
       </small>
     </section>
   </div></div>
 
-  <div id="web" class="slide"><div>
+  <div id="web-origin" class="slide"><div>
     <section>
       <header>
         <h2>Web</h2>
@@ -451,30 +423,10 @@ body {
     </section>
   </div></div>
 
-  <div id="web-documents" class="slide"><div>
+  <div id="web-basic" class="slide"><div>
     <section>
       <header>
-        <h2>Web 文档</h2>
-      </header>
-      <pre>
-        <code>&gt; GET / HTTP/1.1</code>
-        <code>&gt; Host: test.example.com</code>
-        <code>&gt; </code>
-        <code>&lt; HTTP/1.1 200 OK</code>
-        <code>&lt; Content-Type: text/html</code>
-        <code>&lt; </code>
-        <code>&lt;!doctype html&gt;</code>
-        <code>&lt;title&gt;Web document for test&lt;/title&gt;</code>
-        <code>&lt;h1&gt;Hello World!&lt;/h1&gt;</code>
-      </pre>
-
-    </section>
-  </div></div>
-
-  <div id="web-documents-contd" class="slide"><div>
-    <section>
-      <header>
-        <h2>Web 文档</h2>
+        <h2>URL/HTTP/HTML</h2>
       </header>
       <pre>
         <code>&gt; GET / HTTP/1.1</code>
@@ -497,225 +449,12 @@ body {
         <h2>Web 应用</h2>
       </header>
       <blockquote class="lots">
-        <p>... produce architecture and requirements for selection and profiling of the on the wire protocols. ...</p>
-        <p class="byline">rtcweb - Charter</p>
+        <p>With Gmail and Google Maps, they (Google) built applications that took advantage of this (XMLHttpRequest) to provide a user interface that was much more like a web application.</p>
+        <p class="byline">Aaron Swartz</p>
       </blockquote>
       <small class="credits">
-        <a href="http://www.w3.org/2011/04/webrtc-charter.html">
-          WebRTC WG Charter
-        </a>
-      </small>
-    </section>
-  </div></div>
-
-  <div id="tech-animation" class="slide" data-should-animate="#hello-animation-stage"><div>
-    <section>
-      <header>
-        <h2>动画</h2>
-      </header>
-
-      <div id="hello-animation-stage">
-        <img src="pictures/2015-chengdu-meetup/hello-2.png" width="300" alt="Firefox Hello" id="hello-animation-fallback" height="188">
-
-        <div id="hello-conversation">
-          <div class="hello-sprite hello-message" id="hello-message-blue1"></div>
-          <div class="hello-sprite hello-message" id="hello-message-green1"></div>
-          <div class="hello-sprite hello-message" id="hello-message-blue2"></div>
-          <div class="hello-sprite hello-message" id="hello-message-green2"></div>
-          <div class="hello-sprite hello-message" id="hello-message-blue3"></div>
-          <div class="hello-sprite hello-message" id="hello-message-green3"></div>
-          <div class="hello-sprite hello-message" id="hello-message-blue4"></div>
-          <div class="hello-sprite hello-message" id="hello-message-green4"></div>
-          <div class="hello-sprite hello-message" id="hello-message-blue-face"></div>
-          <div class="hello-sprite hello-message" id="hello-message-green-face"></div>
-        </div>
-
-        <div class="hello-sprite" id="hello-wordmark"></div>
-      </div>
-      <button>开始动画</button>
-      <script>
-      (function() {
-        var button = document.querySelector("#tech-animation button"),
-            animation = document.querySelector("#hello-animation-stage");
-        button.addEventListener("click", function() {
-          animation.className = "animate";
-        });
-      })();
-      </script>
-
-      <small class="credits">
-        <a href="https://github.com/mozilla/bedrock/commit/eb6471a1e0a3395f32f21e39c3ce497e1f3c3070">
-          Add firstrun and whatsnew pages. Bug 1099471. · mozilla/bedrock@eb6471a · GitHub
-        </a>
-      </small>
-    </section>
-  </div></div>
-
-  <div id="tech-storage" class="slide"><div>
-    <section>
-      <header>
-        <h2>存储</h2>
-      </header>
-      <img src="pictures/2015-chengdu-meetup/peerjs.png"
-           class="middle" height="384"
-           alt="PeerJS Status">
-      <small class="credits">
-        <a href="http://peerjs.com/status/">
-          PeerJS Status
-        </a>
-      </small>
-    </section>
-  </div></div>
-
-  <div id="tech-webgl" class="slide"><div>
-    <section>
-      <header>
-        <h2>WebGL</h2>
-      </header>
-      <img src="pictures/2015-chengdu-meetup/fxos.png"
-           class="middle" height="384"
-           alt="Can I use WebRTC?">
-    </section>
-  </div></div>
-
-  <div id="tech-audio" class="slide"><div>
-    <section>
-      <header>
-        <h2>Web Audio</h2>
-      </header>
-      <video class="right" height="384"
-             poster="pictures/2015-chengdu-meetup/webrtc_logo.jpg">
-        Are you kidding? No video support?
-      </video>
-      <ul>
-        <li>代码片段
-        <li>背景概念
-        <li>应用举例
-      </ul>
-      <button>切换摄像头</button>
-      <script>
-      (function() {
-        var button = document.querySelector("#webrtc-gum button"),
-            video = document.querySelector("#webrtc-gum video");
-        if (navigator.mozGetUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.getUserMedia) {
-          button.addEventListener("click", function() {
-            if (video.src && ["blob", "mediastream"].indexOf(video.src.split(":")[0]) > -1) {
-              video.pause();
-              video.src = "";
-            } else {
-              var getUserMedia = (navigator.mozGetUserMedia ||
-                                  navigator.webkitGetUserMedia ||
-                                  navigator.getUserMedia).bind(navigator);
-              getUserMedia({
-                video: true,
-                audio: false
-              }, function(aStream) {
-                video.src = URL.createObjectURL(aStream);
-                video.play();
-              }, function(aError) {
-                console.error(aError);
-              })
-            }
-          });
-        } else {
-          button.hidden = true;
-        }
-      })();
-      </script>
-    </section>
-  </div></div>
-
-  <div id="tech-video" class="slide"><div>
-    <section>
-      <header>
-        <h2>MSE<del> &amp; EME</del></h2>
-      </header>
-      <img src="pictures/2015-chengdu-meetup/youtube-dash.png"
-           class="middle" height="384"
-           alt="MSE/DASH used by YouTube">
-      <small class="credits">
-        <a href="https://www.youtube.com/watch?v=kmk43_2dtn0">
-          The Mozilla Story - YouTube
-        </a>
-        &nbsp;
-        <a href="http://people.mozilla.org/~cpearce/mse-clearkey/">
-          MSE + EME Demo
-        </a>
-      </small>
-    </section>
-  </div></div>
-
-  <div id="tech-webrtc" class="slide"><div>
-    <section>
-      <header>
-        <h2>WebRTC</h2>
-      </header>
-      <video class="right" height="384"
-             poster="pictures/2015-chengdu-meetup/webrtc_logo.jpg">
-        Are you kidding? No video support?
-      </video>
-      <ul>
-        <li>代码片段
-        <li>背景概念
-        <li>应用举例
-      </ul>
-      <button>切换摄像头</button>
-      <script>
-      (function() {
-        var button = document.querySelector("#tech-webrtc button"),
-            video = document.querySelector("#tech-webrtc video");
-        if (navigator.mozGetUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.getUserMedia) {
-          button.addEventListener("click", function() {
-            if (video.src && ["blob", "mediastream"].indexOf(video.src.split(":")[0]) > -1) {
-              video.pause();
-              video.src = "";
-            } else {
-              var getUserMedia = (navigator.mozGetUserMedia ||
-                                  navigator.webkitGetUserMedia ||
-                                  navigator.getUserMedia).bind(navigator);
-              getUserMedia({
-                video: true,
-                audio: false
-              }, function(aStream) {
-                video.src = URL.createObjectURL(aStream);
-                video.play();
-              }, function(aError) {
-                console.error(aError);
-              })
-            }
-          });
-        } else {
-          button.hidden = true;
-        }
-      })();
-      </script>
-    </section>
-  </div></div>
-
-  <div id="tech-asmjs" class="slide"><div>
-    <section>
-      <header>
-        <h2>asm.js &amp; Emscripten</h2>
-      </header>
-      <pre>
-        <code>var pc = new RTCPeerConnection({</code>
-        <code>  "iceServers": [{ "url": "stun:stun.example.org" }]</code>
-        <code>});</code>
-        <code>...</code>
-        <code>pc.addStream(stream);</code>
-        <code>pc.createOffer(function localDescCreated(desc) {</code>
-        <code>  pc.setLocalDescription(desc, function () {</code>
-        <code>    signalingChannel.send({ sdp: pc.localDescription });</code>
-        <code>  }, logError);</code>
-        <code>...</code>
-      </pre>
-      <small class="credits">
-        <a href="http://www.w3.org/TR/webrtc/">
-          WebRTC 1.0: Real-time Communication Between Browsers
+        <a href="http://www.aaronsw.com/weblog/ajaxhistory">
+          A Brief History of Ajax (Aaron Swartz's Raw Thought)
         </a>
       </small>
     </section>
@@ -739,8 +478,8 @@ body {
 
   <div id="tool-devtools" class="slide"><div>
     <section>
-      <header class="ribbon">
-        <h2 class="ribbon-content">开发者工具</h2>
+      <header>
+        <h2>开发者工具</h2>
       </header>
       <img src="pictures/2015-chengdu-meetup/devtools.jpg"
            class="middle" height="384"
@@ -749,9 +488,288 @@ body {
         <a href="https://www.mozilla.org/zh-CN/firefox/developer/">
           Firefox Developer Edition — Mozilla
         </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="tech-html-css" class="slide"><div>
+    <section>
+      <header>
+        <h2>HTML/CSS</h2>
+      </header>
+      <ol class="additive inner left">
+        <li class="active">writing-mode
+        <li>ruby: 
+          <ruby>
+            <rb>丧<rp>(</rp><rt>gàn<rp>)</rp><rb>心<rp>(</rp><rt>de<rp>)</rp><rb>病<rp>(</rp><rt>piào<rp>)</rp><rb>狂<rp>(</rp><rt>liang<rp>)</rp>
+          </ruby>
+        <li>@counter-style
+        <li>?<br>
+          <pre>
+            <code>@counter-style cs-additive {</code>
+            <code>  system: additive;</code>
+            <code>  range: 1 3;</code>
+            <code>  additive-symbols: 1 I;</code>
+            <code>}</code>
+          </pre>
+      </ol>
+
+      <p class="vertical right">
+        “我等之见解为，下述真理不证自明：凡人生而平等，秉造物者之赐，拥诸无可转让之权利，包含生命权、自由权、与追寻幸福之权。”
+      </p>
+      <small class="credits">
+        <a href="http://zh.wikipedia.org/wiki/东亚文字排列方向">
+          东亚文字排列方向
+        </a>
         &nbsp;
-        <a href="http://jameskoster.co.uk/snippets/pure-css-3d-ribbon/">
-          Pure CSS 3D ribbon - James Koster
+        <a href="http://caniuse.com/#search=ruby">
+          Can I Use Ruby annotation?
+        </a>
+        &nbsp;
+        <a href="https://mdn.github.io/css-counter-style-demo/">
+          CSS @counter-style Demo
+        </a>
+      </small>
+
+    </section>
+  </div></div>
+
+  <div id="tech-webrtc" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebRTC</h2>
+      </header>
+      <video class="right" height="384"
+             poster="pictures/2015-chengdu-meetup/webrtc_logo.jpg">
+        Are you kidding? No video support?
+      </video>
+      <ul>
+        <li>getUserMedia
+        <li>RTCPeerConnection (DTLS)
+        <li>Offer/Answer
+        <li>multistream / renegotiation
+      </ul>
+      <button>切换摄像头</button>
+      <script>
+      (function() {
+        var button = document.querySelector("#tech-webrtc button"),
+            video = document.querySelector("#tech-webrtc video");
+        if (navigator.mozGetUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.getUserMedia) {
+          button.addEventListener("click", function() {
+            if (video.src && ["blob", "mediastream"].indexOf(video.src.split(":")[0]) > -1) {
+              video.pause();
+              video.src = "";
+              if (window.webrtcStream) {
+                window.webrtcStream.stop();
+                delete window.webrtcStream;
+              }
+            } else {
+              var getUserMedia = (navigator.mozGetUserMedia ||
+                                  navigator.webkitGetUserMedia ||
+                                  navigator.getUserMedia).bind(navigator);
+              getUserMedia({
+                video: true,
+                audio: false
+              }, function(aStream) {
+                window.webrtcStream = aStream;
+                video.src = URL.createObjectURL(aStream);
+                video.play();
+              }, function(aError) {
+                console.error(aError);
+              })
+            }
+          });
+        } else {
+          button.hidden = true;
+        }
+      })();
+      </script>
+    </section>
+  </div></div>
+
+  <div id="tech-video" class="slide"><div>
+    <section>
+      <header>
+        <h2>MSE (&amp; EME)</h2>
+      </header>
+      <img src="pictures/2015-chengdu-meetup/youtube-dash.png"
+           class="middle" height="384"
+           alt="MSE/DASH used by YouTube">
+      <!--<p>视频下载进度: <span id="videoProgress">0</span>% | 音频下载进度: <span id="audioProgress">0</span>%</p>
+
+      <video id="v" controls class="middle shadow" height="384" preload="auto">
+      </video>-->
+      <small class="credits">
+        <a href="http://people.mozilla.org/~cpearce/mse-clearkey/">
+          MSE + EME Demo
+        </a>
+      </small>
+      <!--<script>
+      (function() {
+
+      const KEYSYSTEM_TYPE = "org.w3.clearkey";
+
+      function Load() {
+        if (!navigator.requestMediaKeySystemAccess) {
+          log("EME API is not supported. Enable pref media.eme.enabled to true in about:config");
+          return;
+        }
+
+        var video = e("v");
+
+        // Log events dispatched to make debugging easier...
+        [ "canplay", "canplaythrough", "encrypted", "ended", "error", "loadeddata",
+          "loadedmetadata", "loadstart", "pause", "play", "playing", "progress",
+          "stalled", "suspend", "waiting",
+        ].forEach(function (e) {
+          v.addEventListener(e, function(event) {
+            log("EVENT: " + e);
+          }, false);
+        });
+
+
+        var keys = {
+          // "keyid" : "key"
+          "7e571d037e571d037e571d037e571d03" : "7e5733337e5733337e5733337e573333",
+          "7e571d047e571d047e571d047e571d04" : "7e5744447e5744447e5744447e574444",
+        };
+
+        var options = [
+          {
+            initDataType: "cenc",
+            videoType: "video/mp4",
+          }
+        ];
+
+
+        SetupEME(video, KEYSYSTEM_TYPE, "video", keys, options);
+
+        var ms = new MediaSource();
+        video.src = URL.createObjectURL(ms);
+
+        function downloadProgress(id) {
+          return function(percent) {
+            e(id).innerHTML = percent;
+          }
+        }
+
+        var SourceOpen = function () {
+          ms.removeEventListener("sourceopen", SourceOpen);
+          log(name + " sourceopen");
+          Promise.all([MSELoadTrack(videoFragments, "video/mp4", ms, "video", downloadProgress("videoProgress")),
+                       MSELoadTrack(audioFragments, "audio/mp4", ms, "audio", downloadProgress("audioProgress"))])
+
+            .then(function(){log("All segments downloaded"); ms.endOfStream();});
+        }
+
+        ms.addEventListener("sourceopen", SourceOpen);
+        video.addEventListener("canplay", function(){video.play();});
+      }
+
+      window.addEventListener("load", Load, false);
+
+      })();
+      </script>-->
+    </section>
+  </div></div>
+
+  <div id="tech-animation" class="slide"><div>
+    <section>
+      <header>
+        <h2>CSS 动画</h2>
+      </header>
+
+      <div id="hello-animation-stage">
+        <img src="pictures/2015-chengdu-meetup/hello-2.png" width="300" alt="Firefox Hello" id="hello-animation-fallback" height="188">
+
+        <div id="hello-conversation">
+          <div class="hello-sprite hello-message" id="hello-message-blue1"></div>
+          <div class="hello-sprite hello-message" id="hello-message-green1"></div>
+          <div class="hello-sprite hello-message" id="hello-message-blue2"></div>
+          <div class="hello-sprite hello-message" id="hello-message-green2"></div>
+          <div class="hello-sprite hello-message" id="hello-message-blue3"></div>
+          <div class="hello-sprite hello-message" id="hello-message-green3"></div>
+          <div class="hello-sprite hello-message" id="hello-message-blue4"></div>
+          <div class="hello-sprite hello-message" id="hello-message-green4"></div>
+          <div class="hello-sprite hello-message" id="hello-message-blue-face"></div>
+          <div class="hello-sprite hello-message" id="hello-message-green-face"></div>
+        </div>
+
+        <div class="hello-sprite" id="hello-wordmark"></div>
+      </div>
+      <script>
+      (function() {
+        var animation = document.querySelector("#hello-animation-stage");
+        window.addEventListener("hashchange", function(evt) {
+          if (evt.newURL.endsWith("#tech-animation")) {
+            animation.classList.add("animate");
+          } else if (evt.oldURL.endsWith("#tech-animation")) {
+            // animation.classList.remove("animate");
+          }
+        }, false);
+      })();
+      </script>
+
+      <small class="credits">
+        <a href="https://github.com/mozilla/bedrock/commit/eb6471a1e0a3395f32f21e39c3ce497e1f3c3070">
+          Add firstrun and whatsnew pages. Bug 1099471. · mozilla/bedrock@eb6471a · GitHub
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="tech-webgl" class="slide"><div>
+    <section>
+      <header>
+        <h2>WebGL</h2>
+      </header>
+      <video controls class="middle shadow" height="384"
+             poster="pictures/2015-chengdu-meetup/canvas.jpg">
+        <source src="videos/2015-chengdu-meetup/canvas.webm" type="video/webm"></source>
+      </video>
+      <small class="credits">
+        <a href="https://www.youtube.com/watch?v=7L22zAU9byM">
+          Firefox Canvas Debugger - Firefox Developer Tools - YouTube
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="tech-audio" class="slide"><div>
+    <section>
+      <header>
+        <h2>Web Audio</h2>
+      </header>
+      <video controls class="middle shadow" height="384"
+             poster="pictures/2015-chengdu-meetup/webaudio.jpg">
+        <source src="videos/2015-chengdu-meetup/webaudio.webm" type="video/webm"></source>
+      </video>
+      <small class="credits">
+        <a href="https://www.youtube.com/watch?v=R_qDaLQ8ghg">
+          Web Audio Editor - YouTube
+        </a>
+      </small>
+    </section>
+  </div></div>
+
+  <div id="tech-asmjs" class="slide"><div>
+    <section>
+      <header>
+        <h2>asm.js &amp; Emscripten</h2>
+      </header>
+      <video controls class="middle shadow" height="384"
+             poster="pictures/2015-chengdu-meetup/unreal47.jpg">
+        <source src="videos/2015-chengdu-meetup/unreal47.webm" type="video/webm"></source>
+      </video>
+      <small class="credits">
+        <a href="https://www.youtube.com/watch?v=f-61qLkykMU">
+          Unreal Engine 4 7, now shipping with HTML5 export - YouTube
+        </a>
+        &nbsp;
+        <a href="https://hacks.mozilla.org/2015/03/asm-speedups-everywhere/">
+          asm.js Speedups Everywhere &#10025; Mozilla Hacks  
         </a>
       </small>
     </section>
@@ -762,20 +780,12 @@ body {
       <header>
         <h2>移动应用</h2>
       </header>
-      <pre>
-        <code>+-----------+                               +-----------+ </code>
-        <code>|  Web App  |<--- App-Specific Signaling -->|  Web App  | </code>
-        <code>+-----------+                               +-----------+ </code>
-        <code>      ^                                            ^      </code>
-        <code>      |  SDP                                       |  SDP </code>
-        <code>      V                                            V      </code>
-        <code>+-----------+                                +-----------+</code>
-        <code>|  Browser  |<----------- Media ------------>|  Browser  |</code>
-        <code>+-----------+                                +-----------+</code>
-      </pre>
+      <img src="pictures/2015-chengdu-meetup/app-100-2014.jpg"
+           class="middle" height="384"
+           alt="The App 100: The World's Greatest Apps">
       <small class="credits">
-        <a href="http://tools.ietf.org/html/draft-ietf-rtcweb-jsep-06">
-          draft-ietf-rtcweb-jsep-06 - Javascript Session Establishment Protocol
+        <a href="http://www.businessinsider.com/100-best-apps-for-iphone-and-android-2014-10">
+          100 Best Apps for iPhone and Android - Business Insider
         </a>
       </small>
     </section>
@@ -786,10 +796,14 @@ body {
       <header>
         <h2>移动 Web</h2>
       </header>
-      不同点，开发难度
-      <img src="pictures/2015-chengdu-meetup/sdp.png"
+      <img src="pictures/2015-chengdu-meetup/native_html5_hybrid.png"
            class="middle" height="384"
-           alt="SDP Answer">
+           alt="Native, HTML5, or Hybrid">
+      <small class="credits">
+        <a href="https://developer.salesforce.com/page/Native,_HTML5,_or_Hybrid:_Understanding_Your_Mobile_Application_Development_Options">
+          Native, HTML5, or Hybrid: Understanding Your Mobile Application Development Options - developer.force.com
+        </a>
+      </small>
     </section>
   </div></div>
 
@@ -800,11 +814,15 @@ body {
       </header>
       <video controls class="middle shadow" height="384"
              poster="pictures/2015-chengdu-meetup/responsive.jpg">
-        <source src="pictures/2015-chengdu-meetup/responsive.webm" type="video/webm"></source>
+        <source src="videos/2015-chengdu-meetup/responsive.webm" type="video/webm"></source>
       </video>
       <small class="credits">
         <a href="https://www.youtube.com/watch?v=iJ4C7VnIMC8">
           Responsive Design View - YouTube
+        </a>
+        &nbsp;
+        <a href="https://developer.mozilla.org/en-US/docs/Tools/Responsive_Design_View">
+          Responsive Design View - Firefox Developer Tools | MDN
         </a>
       </small>
     </section>
@@ -817,11 +835,15 @@ body {
       </header>
       <video controls class="middle shadow" height="384"
              poster="pictures/2015-chengdu-meetup/valence.jpg">
-        <source src="pictures/2015-chengdu-meetup/valence.webm" type="video/webm"></source>
+        <source src="videos/2015-chengdu-meetup/valence.webm" type="video/webm"></source>
       </video>
       <small class="credits">
         <a href="https://www.youtube.com/watch?v=eH0R10Ga4Hs">
           Valence - YouTube
+        </a>
+        &nbsp;
+        <a href="https://developer.mozilla.org/en-US/docs/Tools/Valence">
+          Valence (Firefox Tools Adapter) - Firefox Developer Tools | MDN
         </a>
       </small>
     </section>
@@ -834,11 +856,15 @@ body {
       </header>
       <video controls class="middle shadow" height="384"
              poster="pictures/2015-chengdu-meetup/webide.jpg">
-        <source src="pictures/2015-chengdu-meetup/webide.webm" type="video/webm"></source>
+        <source src="videos/2015-chengdu-meetup/webide.webm" type="video/webm"></source>
       </video>
       <small class="credits">
         <a href="https://www.youtube.com/watch?v=1R9_WdXwUsE">
           Web IDE - YouTube
+        </a>
+        &nbsp;
+        <a href="https://developer.mozilla.org/en-US/docs/Tools/WebIDE/Working_with_Cordova_apps_in_WebIDE">
+          Working with Cordova apps in WebIDE - Firefox Developer Tools | MDN
         </a>
       </small>
     </section>
@@ -850,18 +876,15 @@ body {
         <h2>其它资源</h2>
       </header>
       <ul>
-        <li><a href="https://tokbox.com/opentok/libraries/client/js/">tokbox.com/opentok/</a>
-        <li><a href="http://peerjs.com/">peerjs.com</a>
-        <!--<li><a href="http://rtc.io/">rtc.io</a>-->
-        <li><a href="http://simplewebrtc.com/">simplewebrtc.com</a>
-        <li><a href="https://vline.com/developer/docs/vline.js/">vline.com/developer/</a>
-        <li><a href="https://github.com/webRTC/webRTC.io">github.com/webRTC/webRTC.io</a>
+        <li><a href="https://blog.mozilla.org/futurereleases/">blog.mozilla.org/futurereleases/</a>
+        <li><a href="https://hacks.mozilla.org/">hacks.mozilla.org</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Tools">developer.mozilla.org/docs/Tools</a>
       </ul>
-      <ul>
-        <li><a href="http://www.webrtc.org/">www.webrtc.org</a>
-        <li><a href="http://www.html5rocks.com/en/tutorials/webrtc/basics/">www.html5rocks.com/en/tutorials/webrtc/basics/</a>
-        <li><a href="https://hacks.mozilla.org/category/webrtc/">hacks.mozilla.org/category/webrtc/</a>
-      </ul>
+      <!--<ul>
+        <li><a href="https://blog.mozilla.org/futurereleases/">blog.mozilla.org/futurereleases/</a>
+        <li><a href="https://hacks.mozilla.org/">hacks.mozilla.org</a>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Tools">developer.mozilla.org/docs/Tools</a>
+      </ul>-->
     </section>
   </div></div>
 
@@ -900,6 +923,9 @@ body {
   </div></div>
   <div class="progress"><div></div></div>
   <script src="scripts/script.js"></script>
+  <!--<script src="scripts/2015-chengdu-meetup/resources.js"></script>
+  <script src="scripts/2015-chengdu-meetup/mse.js"></script>
+  <script src="scripts/2015-chengdu-meetup/eme.js"></script>-->
   <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
 </body>
 </html>
