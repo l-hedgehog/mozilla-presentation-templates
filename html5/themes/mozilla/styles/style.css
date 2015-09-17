@@ -358,7 +358,6 @@ blockquote .quotesource {
 .slide.oneline h2 {
 	position:absolute;
 	top:50%;
-	width:100%;
 	text-align:left;
 	line-height:1;
 	font-size:70px;
@@ -748,4 +747,29 @@ ul.inline li:last-child::after {
   0%   { transform: rotate(-3deg) translate(-50%, -50%); }
   50%  { transform: rotate(3deg) translate(-50%, -50%); }
   100% { transform: rotate(-3deg) translate(-50%, -50%); }
+}
+
+/* Multilingual support */
+
+.en-US,
+.zh-CN,
+.zh-TW,
+.ja-JP {
+	display: none;
+}
+
+:lang(en-US) .en-US,
+:lang(zh-CN) .zh-CN,
+:lang(zh-TW) .zh-TW,
+:lang(ja-JP) .ja-JP {
+	display: block;
+}
+
+
+#langMenuDivId {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+	bottom: 36px;
 }
